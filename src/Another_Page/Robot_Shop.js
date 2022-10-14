@@ -91,42 +91,21 @@ import { contractAddr } from '../App';
 	return(
 		<div className='div13'>
 		<br />
-      		<br />
+      	<br />
+		<br />
 		<h1 className='text7'>STUST UNIVERSE SHOP</h1>
 			
 			<Row>
-				<Col>
-				<Accordion defaultActiveKey="0">
-					<Accordion.Item eventKey="0">
-						<Accordion.Header>Accordion Item #1</Accordion.Header>
-						<Accordion.Body>
-						
-						</Accordion.Body>
-					</Accordion.Item>
-					<Accordion.Item eventKey="1">
-						<Accordion.Header>Accordion Item #2</Accordion.Header>
-						<Accordion.Body>
-						
-						</Accordion.Body>
-					</Accordion.Item>
-				</Accordion>
-				</Col>
+				{/* Maybe 查詢選單? */}
+				{/* <Col>
+				</Col> */}
 				<Col>
 				<Row>
 				{cardInfo.map(renderCard)}
 				</Row>
 				
 				</Col>
-				
 			</Row>
-
-		
-			
-		
-				
-				
-				
-
 			<div className='div12'>
 			  	<br/>
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>

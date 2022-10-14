@@ -13,9 +13,11 @@ import React,{useState} from 'react';
 		<div className='div5'>
 			<br />
       <br/>
+      <br />
 			<Container>
         <Row >
             <br />
+            
             <Alert className='slide-in-top' variant='success'>
               <h1 className='text7'>Empowerment</h1>
               <hr/>

@@ -9,6 +9,7 @@ import React,{useState} from 'react';
 		<div className='div9'>
       <br />
       <br />
+      <br />
       
 			<h1 className='text7'>Attribute</h1>
 			<Container>

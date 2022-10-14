@@ -83,7 +83,8 @@ import {
 	return(
 		<div className='dvi1'>
 			<br />
-      			<br />
+			<br />
+			<br />
 			 {/* Mint button 合約 */}
 			 <div className='div6'>
 				<div >
@@ -122,6 +123,7 @@ import {
 				</Container>
 				</div>
       		</div>
+			{/* 盲盒說明 */}
 			<div className='div3'>
 				<h1>How To Mint Blind Box?</h1>
 				<Row>

@@ -80,14 +80,14 @@ function Home(){
                       <h1 className='text3'>
                         Get Your Own Robots
                       </h1>
-                      <h6>
+                      <h6 className='text3'>
                       Robotos is a collection of droid characters designed by Pablo Stanley and minted as NFTs. They are constructed from various metal outfits, tin faces, digital accessories, top pieces, faces, backpacks, arms, and colors.
                         First way.You need to connect wallet.And get some Ethers coins to buy a Blind Box.Open it .And you get a Robot!
                       </h6>
                       <a href='http://localhost:3000/Mint'>
                       <button className='button2'>Go to buy a Blind Box ➝</button>
                       </a>
-                      <h6>
+                      <h6 className='text3'>
                         Second way.If you want to choise Robot which you like.You can click this Button and go to the shop buy the Robot which you like.
                       </h6>
                       <a href='http://localhost:3000/Robot_Shop'>
@@ -115,9 +115,9 @@ function Home(){
               </Col>
               <Col>
                 
-                <h6>
+                <p>
                 Yan Youxian pointed out that since the 4th, the Chinese Navy has maintained 13 combat ships, intelligence search ships, etc. 24 nautical miles away from my country's adjoining area every day; The J-11, J-16, and supply aircraft, such as the Air Police 500 and other series of aircraft, have implemented multi-ship and multi-model deterrence in the Taiwan Strait.Lieutenant General Ye Guohui, Deputy Chief of the Planning Office of the Ministry of National Defense, further explained that in terms of the actions of the communist army, the communist army announced the opening of 6 no-navigation areas on 8/2, adding a 7th location on 8/3, launching missiles on 8/4, and launching missiles on 8/4- On 8/7, joint military operations and drones harassed our outer islands; for the national army, 8/2 dispatched troops to deal with the communist army, 8/3 enhanced alertness, 8/4 completed air defense units, 8/4-8 /7 Dispatched aircraft and ships should respond and use post-bomb warnings, and combat readiness troops should be on alert.
-                </h6>
+                </p>
               </Col>
             </Row>
           </Container>
