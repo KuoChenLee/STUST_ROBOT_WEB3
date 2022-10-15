@@ -29,7 +29,7 @@ const web3Modal = new Web3Modal({
   providerOptions: {} 
 });
   
-export const contractAddr=0xd9c3d11aa930c4c277e12B2bF764030De51E97B5;
+export const contractAddr="0xDfdcedfe1d9dB7A052cbdc84Dd7b155985eAf525";
 export const abi=[
 	{
 		"inputs": [

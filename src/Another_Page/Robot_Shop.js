@@ -89,7 +89,7 @@ import { contractAddr } from '../App';
 		);
 	}
 	return(
-		<div className='div13'>
+		<div className='div20'>
 		<br />
       	<br />
 		<br />
