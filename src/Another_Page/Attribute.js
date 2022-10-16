@@ -117,7 +117,7 @@ import React,{useState} from 'react';
                     <button className='button4'>Go to the shop ➝</button>
           </a>
 			  	<br/>
-				<strong className='text4'>123456789 UNIVERSE ROBOTS</strong>
+				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
 		</div>
 		
