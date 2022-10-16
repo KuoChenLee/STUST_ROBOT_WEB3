@@ -1,11 +1,13 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card} from 'react-bootstrap';
+import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card,Form,FloatingLabel} from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Another_Page_Css/Robot_Shop.css';
 import {  ethers } from "ethers";
 import Web3Modal from "web3modal";
 import React,{useState,useRef,useEffect} from 'react';
+import contractaddress from'../contractaddress.json';
+import ABI from'../contractabi.json';
 import {
 	TransitionGroup,
 	CSSTransition
@@ -19,13 +21,17 @@ import {
 	useLocation,
 	useParams
   } from "react-router-dom";
-import { contractAddr } from '../App';
+
+  const contractAddr=contractaddress.contractaddr;
+  const abi=ABI.abi;
   const web3Modal = new Web3Modal({
     network: "Goerli", // testnet
     providerOptions: {} 
   });
 
   function Robot_Shop(props){
+	const [tokenID,settokenID]=useState();
+	const [sellprice,setSellPrice]=useState();
 	const [address,setAddress]=useState(props.address);
 	const [balance,setBalance]=useState('');
 	const [contract,setContract]=useState(props.contract);
@@ -57,15 +63,17 @@ import { contractAddr } from '../App';
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/19.gif",name:"STUST_ROBOTS #19",price:"0.003"},
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/20.gif",name:"STUST_ROBOTS #20",price:"0.003"}
 	]
+	async function sell(){
+		
+		let createMarketplaceItem=await contract.createMarketplaceItem(
+			tokenID,
+			sellprice
+		)
+		let seller=await contract.idToMarketplaceItem(1)
+		console.log(seller)
+	}
 	async function BuyNFT(){
-	// 	const mintPrice = await contract.mintPrice();
-	// 	let tx = await contract.mintSNMeta(
-	// 		1
-	// 		,{value:mintPrice.toString()}
-	// 		);
-	// 	let setBaseURI=await contract.setBaseURI(
-	// 		"ipfs://QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/0.json"
-	// 	)
+		
   
 	}
 	// 寫一個按鈕可以買賣的
@@ -101,7 +109,24 @@ import { contractAddr } from '../App';
 				</Col> */}
 				<Col>
 				<Row>
+				<div >
+				<input
+					title="STUST ROBOT TokenID"
+					placeholder="STUST ROBOT #?"
+					onChange={(e)=>settokenID(e.target.value)}
+				>
+				</input>
+				<input
+					title="Sell Price"
+					placeholder="Price"
+					onChange={(e)=>setSellPrice(e.target.value)}
+				>
+				</input>
+					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button>
+				</div>
 				{cardInfo.map(renderCard)}
+
+				
 				</Row>
 				
 				</Col>

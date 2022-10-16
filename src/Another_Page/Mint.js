@@ -55,8 +55,9 @@ import {
 				"ipfs://QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
 	);
 	//做一個隨機盒子的運算
-    
+   
   }
+  console.count()
   // 打開盲盒處理
   async function SeeNFT(){
     let flipReveal=await contract.flipReveal();
