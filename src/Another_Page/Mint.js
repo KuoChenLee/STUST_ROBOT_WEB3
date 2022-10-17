@@ -33,7 +33,8 @@ import {
   const abi=ABI.abi;
 
   function Mint(props){
-
+//   const contractAddr=props.contractAddr;
+//   const abi=props.abi;
   const [address,setAddress]=useState(props.address);
   const [balance,setBalance]=useState('');
   const [contract,setContract]=useState(props.contract);
@@ -52,8 +53,12 @@ import {
     let response=await tx.wait();
     console.log(response);
 	let setNotRevealedURI=await contract.setNotRevealedURI(
-				"ipfs://QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
+				"https://gateway.pinata.cloud/ipfs/QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
 	);
+	// let tokenURI=await contract.tokenURI(2)
+	// console.log(tokenURI);
+	// let ownerof=await contract.ownerof(2)
+	// console.log(ownerof);
 	//做一個隨機盒子的運算
    
   }
@@ -62,7 +67,7 @@ import {
   async function SeeNFT(){
     let flipReveal=await contract.flipReveal();
         let setBaseURI=await contract.setBaseURI(
-        "ipfs://QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
+        "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
         )
 	
 	

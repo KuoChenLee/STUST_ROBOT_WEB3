@@ -4,7 +4,8 @@ import Alert from 'react-bootstrap/Alert';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Another_Page_Css/Robot_Shop.css';
 import {  ethers } from "ethers";
-import Web3Modal from "web3modal";
+import Web3Modal, { PROVIDER_WRAPPER_CLASSNAME } from "web3modal";
+import axios from 'axios';
 import React,{useState,useRef,useEffect} from 'react';
 import contractaddress from'../contractaddress.json';
 import ABI from'../contractabi.json';
@@ -39,7 +40,7 @@ import {
 	const [isClick,setClick]=useState(props.isClick);
 	const [notisClick,setNotClick]=useState(props.notisClick);
 	const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
-	
+	const [nftdata,setNFTData]=useState();
 	const cardInfo=[
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/0.gif",name:"STUST_ROBOTS #0",price:"0.003"},
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/1.gif",name:"STUST_ROBOTS #1",price:"0.003"},
@@ -64,38 +65,48 @@ import {
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/20.gif",name:"STUST_ROBOTS #20",price:"0.003"}
 	]
 	async function sell(){
+		let tokenURI=await contract.tokenURI(tokenID)
+		console.log(tokenURI)
+		let jsondata=await fetch(tokenURI);
+		console.log(jsondata)
+		let json = await jsondata.json()
+		setNFTData(json);
+		console.log(json.name)
+		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+		json.animation_url=NFT_GIF
 		
+		console.log(json)
+		let price=sellprice*Math.pow(10,18);
 		let createMarketplaceItem=await contract.createMarketplaceItem(
 			tokenID,
-			sellprice
+			price
 		)
-		let seller=await contract.idToMarketplaceItem(1)
-		console.log(seller)
 	}
+	
 	async function BuyNFT(){
 		
   
 	}
 	// 寫一個按鈕可以買賣的
-	function renderCard(card,index){
+	// function renderCard(card,index){
 
 		
-		return(
-			<Card style={{ width: '20rem' }} key = {index} className="box" >
-			<Card.Img variant="top" src={card.animation_url} alt="robot" />
-			<Card.Body>
-			<Card.Title>{card.name}</Card.Title>
-			<Card.Text>
-				{/* {card.price+"ETH"} */}
-				<br/>
-				<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button>
+	// 	return(
+	// 		<Card style={{ width: '20rem' }} key = {index} className="box" >
+	// 		<Card.Img variant="top" src={card.animation_url} alt="robot" />
+	// 		<Card.Body>
+	// 		<Card.Title>{card.name}</Card.Title>
+	// 		<Card.Text>
+	// 			{/* {card.price+"ETH"} */}
+	// 			<br/>
+	// 			<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button>
 				
-			</Card.Text>
-				{/* <Button variant="primary">Go somewhere</Button> */}
-			</Card.Body>
-    		</Card>
-		);
-	}
+	// 		</Card.Text>
+	// 			{/* <Button variant="primary">Go somewhere</Button> */}
+	// 		</Card.Body>
+    // 		</Card>
+	// 	);
+	// }
 	return(
 		<div className='div20'>
 		<br />
@@ -123,8 +134,22 @@ import {
 				>
 				</input>
 					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button>
+						<Row>
+							{nftdata&&[nftdata].map(({name,animation_url})=>
+							<Col md={4} className="p-3">
+								<Card>
+									<Card.Img variant='top' src={animation_url}/>
+									<Card.Title>{name}</Card.Title>
+									<Card.Body>
+										<br/>
+										<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
+									</Card.Body>
+								</Card>
+							</Col>
+							)}
+						</Row>
 				</div>
-				{cardInfo.map(renderCard)}
+				{/* {cardInfo.map(renderCard)} */}
 
 				
 				</Row>
