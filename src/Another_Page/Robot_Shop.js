@@ -65,13 +65,19 @@ import {
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/20.gif",name:"STUST_ROBOTS #20",price:"0.003"}
 	]
 	async function sell(){
+		//輸入tokenID找tokenURI
 		let tokenURI=await contract.tokenURI(tokenID)
 		console.log(tokenURI)
+		//顯示tokenURI的資料放在jsondata裡
 		let jsondata=await fetch(tokenURI);
 		console.log(jsondata)
+		//將jsondata用json物件形式解譯
 		let json = await jsondata.json()
+		//將這包務建設到NFTData裡
 		setNFTData(json);
+		//查看json裡的name
 		console.log(json.name)
+		//將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
 		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
 		json.animation_url=NFT_GIF
 		
@@ -135,6 +141,7 @@ import {
 				</input>
 					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button>
 						<Row>
+							{/* 假設 */}
 							{nftdata&&[nftdata].map(({name,animation_url})=>
 							<Col md={4} className="p-3">
 								<Card>
