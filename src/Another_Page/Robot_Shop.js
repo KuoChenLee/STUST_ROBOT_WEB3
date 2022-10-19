@@ -41,6 +41,7 @@ import {
 	const [notisClick,setNotClick]=useState(props.notisClick);
 	const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
 	const [nftdata,setNFTData]=useState();
+	const [URI,setURI]=useState([]);
 	const cardInfo=[
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/0.gif",name:"STUST_ROBOTS #0",price:"0.003"},
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/1.gif",name:"STUST_ROBOTS #1",price:"0.003"},
@@ -64,6 +65,7 @@ import {
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/19.gif",name:"STUST_ROBOTS #19",price:"0.003"},
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/20.gif",name:"STUST_ROBOTS #20",price:"0.003"}
 	]
+	// 賣NFT的function
 	async function sell(){
 		//輸入tokenID找tokenURI
 		let tokenURI=await contract.tokenURI(tokenID)
@@ -73,27 +75,45 @@ import {
 		console.log(jsondata)
 		//將jsondata用json物件形式解譯
 		let json = await jsondata.json()
-		//將這包務建設到NFTData裡
+		//將這包物件設到NFTData裡
 		setNFTData(json);
 		//查看json裡的name
 		console.log(json.name)
 		//將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
 		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+		// 將NFT_GIF的animation_url更新到json.animation_url裡
 		json.animation_url=NFT_GIF
-		
+		// setURI(json.animation_url)
+		// for(let i=0;i<URI.length();i++){
+		// 	console.log(URI(i))
+		// }
+		console.log(URI)
 		console.log(json)
+		// 將價格用WEI計算
 		let price=sellprice*Math.pow(10,18);
+		// 觸發createMarketplaceItem來賣NFT
 		let createMarketplaceItem=await contract.createMarketplaceItem(
 			tokenID,
 			price
 		)
 	}
-	
+	// 買NFT的function
 	async function BuyNFT(){
-		
+		// let price1=sellprice*Math.pow(10,18);
+		// let itemId=await contract.idToMarketplaceItem.itemId;
+		// let createMarketplaceSale=await contract.createMarketplaceSale(
+		// 	// item
+		// 	{value: price1},
+		// 	itemId
+		// )
   
 	}
-	// 寫一個按鈕可以買賣的
+	
+	// const itemdisplay=()=>{
+	// 	nftdata.array.forEach(element => {
+			
+	// 	});
+	// }
 	// function renderCard(card,index){
 
 		
@@ -105,14 +125,14 @@ import {
 	// 		<Card.Text>
 	// 			{/* {card.price+"ETH"} */}
 	// 			<br/>
-	// 			<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button>
+	// 			{/* <button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button> */}
 				
 	// 		</Card.Text>
-	// 			{/* <Button variant="primary">Go somewhere</Button> */}
 	// 		</Card.Body>
     // 		</Card>
 	// 	);
 	// }
+	
 	return(
 		<div className='div20'>
 		<br />
@@ -127,6 +147,7 @@ import {
 				<Col>
 				<Row>
 				<div >
+					{/* onChange取得值*/}
 				<input
 					title="STUST ROBOT TokenID"
 					placeholder="STUST ROBOT #?"
@@ -141,9 +162,9 @@ import {
 				</input>
 					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button>
 						<Row>
-							{/* 假設 */}
+							{/*如果有nftdata才顯示*/}
 							{nftdata&&[nftdata].map(({name,animation_url})=>
-							<Col md={4} className="p-3">
+							<Col md={2} className="p-3">
 								<Card>
 									<Card.Img variant='top' src={animation_url}/>
 									<Card.Title>{name}</Card.Title>

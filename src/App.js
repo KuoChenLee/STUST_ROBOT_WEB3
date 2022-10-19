@@ -924,7 +924,7 @@ function App() {
 			
 
 				<Routes>
-					
+					{/* 路徑處理 */}
 					<Route exact path="*"  element={<Home/>}/>
 					<Route path="/Attribute" element={<Attribute/>} />
 					<Route path="/Mint" element={<Mint contract={contract} address={address} notisClick={notisClick} isClick={isClick} contractAddr={contractAddr} abi={abi}/>} />

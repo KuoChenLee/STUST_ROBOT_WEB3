@@ -7,42 +7,23 @@ import Web3Modal from "web3modal";
 import React,{useState,useEffect} from 'react';
 
 function Home(){
-    const [address,setAddress]=useState('');
-    const [balance,setBalance]=useState('');
-    const [contract,setContract]=useState({});
-    const [ens,setEns]=useState('');
-    const [isClick,setClick]=useState(false);
-    const [notisClick,setNotClick]=useState(true);
-    const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
-    function myFunction() {
-      let elem = document.querySelectorAll(".drop-down");
-      elem.forEach(element=>{
-          element.addEventListener("click", e =>{
-              console.log(e.target.innerHTML);
-          });
-      })
-    }
-    myFunction();
-    // //mint 盲盒處理 
-    // async function mint(){
-    //   const mintPrice = await contract.mintPrice();
-    //   let tx = await contract.mintSNMeta(
-    //     1
-    //     ,{value:mintPrice.toString()}
-    //     )
-    //   let response=await tx.wait();
-    //   console.log(response);
-    //   let setNotRevealedURI=await contract.setNotRevealedURI(
-    //   "ipfs://QmetxQmbkyEc8AUBQ3YWDmLKNLF9q5BxNoXdgnwz9hzAVf"
-    //   )
+    // const [address,setAddress]=useState('');
+    // const [balance,setBalance]=useState('');
+    // const [contract,setContract]=useState({});
+    // const [ens,setEns]=useState('');
+    // const [isClick,setClick]=useState(false);
+    // const [notisClick,setNotClick]=useState(true);
+    // const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
+    // function myFunction() {
+    //   let elem = document.querySelectorAll(".drop-down");
+    //   elem.forEach(element=>{
+    //       element.addEventListener("click", e =>{
+    //           console.log(e.target.innerHTML);
+    //       });
+    //   })
     // }
-    // // 打開盲盒處理
-    // async function SeeNFT(){
-    //   let flipReveal=await contract.flipReveal();
-    //       let setBaseURI=await contract.setBaseURI(
-    //       "ipfs://QmTvroQRuCm9RSmpuPmjn9eYZFWfSbPR8ULknHEYgqtBxE/"
-    //       )  
-    // }
+    // myFunction();
+    
     return(
       <div className="App">
         {/* 動態圖展示 */}
