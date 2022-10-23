@@ -1,5 +1,5 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card} from 'react-bootstrap';
+import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card,FormControl,InputLabel,Select,MenuItem} from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -33,7 +33,8 @@ import {
   const abi=ABI.abi;
 
   function Mint(props){
-
+//   const contractAddr=props.contractAddr;
+//   const abi=props.abi;
   const [address,setAddress]=useState(props.address);
   const [balance,setBalance]=useState('');
   const [contract,setContract]=useState(props.contract);
@@ -44,42 +45,40 @@ import {
   const [nftData,setNFTData]=useState();
   //mint 盲盒處理 
   async function mint(){
+	//盲盒的價格
     const mintPrice = await contract.mintPrice();
+	//觸發合約mint功能
     let tx = await contract.mintSNMeta(
       1
       ,{value:mintPrice.toString()}
       );
+	  //看狀態
     let response=await tx.wait();
     console.log(response);
+	// 設定盲盒的IPFS json檔網址
 	let setNotRevealedURI=await contract.setNotRevealedURI(
-				"ipfs://QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
+				"https://gateway.pinata.cloud/ipfs/QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
 	);
+	// let tokenURI=await contract.tokenURI(2)
+	// console.log(tokenURI);
+	// let ownerof=await contract.ownerof(2)
+	// console.log(ownerof);
 	//做一個隨機盒子的運算
    
   }
+  //查看網頁的重新更新
   console.count()
   // 打開盲盒處理
   async function SeeNFT(){
+	// 打開盲盒開關
     let flipReveal=await contract.flipReveal();
+	// 設定NFT IPFS網址
         let setBaseURI=await contract.setBaseURI(
-        "ipfs://QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
+        "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
         )
 	
 	
   }
-
-//   async function gettokenURI(id){
-// 	let tokenURI=await contract.tokenURI(id);
-// 	// console.log(tokenURI)
-
-// 	let jsonURI=tokenURI.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
-// 	// console.log(jsonURI)
-// 	let jsonData=await fetch(jsonURI)
-// 	// console.log(jsonData)
-// 	// console.log(await jsonData.text())
-// 	setNFTData(JSON.parse(await jsonData.text()));
-	
-// }
   
 	return(
 		<div className='dvi1'>
@@ -105,6 +104,7 @@ import {
 						<option class="drop-down">2</option>
 						</select>
 					<Col>
+					{/* 假如未觸發connect wallet button ，button 不能按 */}
 						<Button disabled={notisClick} onClick={()=>mint()} variant={address?"danger":"secondary"} >Mint Blind Box</Button>
                         {/* disabled={notisClick} */}
 					</Col>
@@ -115,6 +115,7 @@ import {
 						</h6>
 					</Col>
 					<Col>
+					{/* 假如未觸發connect wallet button ，button 不能按 */}
 						<Button disabled={notisClick} onClick={()=>SeeNFT()} variant={address?"dark":"secondary"} >Open Blind Box</Button>
                         {/* disabled={notisClick} */}
 					</Col>
@@ -143,25 +144,6 @@ import {
 					</h4>
 				</Row>
 			</div>
-			{/* <Button onClick={()=>gettokenURI(0)}>Get NFT</Button> */}
-				<Row>
-					{/* <img src="https://gateway.pinata.cloud/ipfs/Qmd2Vb6fyMFkd3Kzbffss9QDjvr8reLExhMuhBYRCbrg2y/0.gif" alt="robot" /> */}
-					{/* {nftData&&[nftData].map(({name,animation_url})=> */}
-					{/* <Col md={4} className="p-3"> 
-						<Card> 
-						<Card.Img variant="top" src={animation_url}>
-							<Card.Img variant="top" src="https://gateway.pinata.cloud/ipfs/Qmd2Vb6fyMFkd3Kzbffss9QDjvr8reLExhMuhBYRCbrg2y/0.gif" alt="robot">
-							<Card.Body>
-									<Card.Title>
-										STUST#0
-										{/* {name} */}
-									{/* </Card.Title>
-								</Card.Body> */}
-							{/* </Card.Img>
-						</Card> 
-					 </Col>  */}
-					 {/* )} */} 
-				</Row>
 			  <div className='div12'>
 			  <br/>
 			  	<a href='http://localhost:3000/Robot_Shop'>
