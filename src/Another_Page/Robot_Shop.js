@@ -42,6 +42,7 @@ import {
 	const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
 	const [nftdata,setNFTData]=useState();
 	const [URI,setURI]=useState([]);
+	const [item,setItem]=useState();
 	const cardInfo=[
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/0.gif",name:"STUST_ROBOTS #0",price:"0.003"},
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/1.gif",name:"STUST_ROBOTS #1",price:"0.003"},
@@ -67,6 +68,7 @@ import {
 	]
 	// 賣NFT的function
 	async function sell(){
+		
 		//輸入tokenID找tokenURI
 		let tokenURI=await contract.tokenURI(tokenID)
 		console.log(tokenURI)
@@ -83,12 +85,14 @@ import {
 		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
 		// 將NFT_GIF的animation_url更新到json.animation_url裡
 		json.animation_url=NFT_GIF
-		// setURI(json.animation_url)
-		// for(let i=0;i<URI.length();i++){
-		// 	console.log(URI(i))
-		// }
+		
 		console.log(URI)
 		console.log(json)
+		let item=await contract.idToMarketplaceItem(tokenID);
+		setItem(item.tokenid);
+		console.log(item.itemId)
+		// let fetch=await contract.fetchMarketplaceItems();
+		// console.log(fetch);
 		// 將價格用WEI計算
 		let price=sellprice*Math.pow(10,18);
 		// 觸發createMarketplaceItem來賣NFT
@@ -96,6 +100,12 @@ import {
 			tokenID,
 			price
 		)
+		
+
+	}
+	async function fetch(){
+		
+
 	}
 	// 買NFT的function
 	async function BuyNFT(){
@@ -114,24 +124,24 @@ import {
 			
 	// 	});
 	// }
-	// function renderCard(card,index){
+	function renderCard(card,index){
 
 		
-	// 	return(
-	// 		<Card style={{ width: '20rem' }} key = {index} className="box" >
-	// 		<Card.Img variant="top" src={card.animation_url} alt="robot" />
-	// 		<Card.Body>
-	// 		<Card.Title>{card.name}</Card.Title>
-	// 		<Card.Text>
-	// 			{/* {card.price+"ETH"} */}
-	// 			<br/>
-	// 			{/* <button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button> */}
+		return(
+			<Card style={{ width: '20rem' }} key = {index} className="box" >
+			<Card.Img variant="top" src={card.animation_url} alt="robot" />
+			<Card.Body>
+			<Card.Title>{card.name}</Card.Title>
+			<Card.Text>
+				{/* {card.price+"ETH"} */}
+				<br/>
+				{/* <button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button> */}
 				
-	// 		</Card.Text>
-	// 		</Card.Body>
-    // 		</Card>
-	// 	);
-	// }
+			</Card.Text>
+			</Card.Body>
+    		</Card>
+		);
+	}
 	
 	return(
 		<div className='div20'>
@@ -177,7 +187,7 @@ import {
 							)}
 						</Row>
 				</div>
-				{/* {cardInfo.map(renderCard)} */}
+				{cardInfo.map(renderCard)}
 
 				
 				</Row>
