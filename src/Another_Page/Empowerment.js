@@ -23,7 +23,7 @@ import React,{useState} from 'react';
               <hr/>
               <h5>Buying a blind box will give you a chance to get a VIP NFT. The function of VIP NFT</h5> <h5>is to get a 10% discount when purchasing NFT in our Robot Shop,and you can</h5> <h5> also receive airdrops of our new products from time to time.</h5>
               <a href='http://localhost:3000/Mint'>
-                <button className='button3'>Go to by a Blind Box ➝</button>
+                <button className='button3'>Go to buy a Blind Box ➝</button>
               </a>
             </Alert>  
         </Row>
