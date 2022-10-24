@@ -76,7 +76,6 @@ import {
         let setBaseURI=await contract.setBaseURI(
         "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
         )
-	flipReveal=await contract.flipReveal();
 	
   }
   
