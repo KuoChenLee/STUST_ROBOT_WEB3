@@ -103,9 +103,10 @@ import {
 	// 買NFT的function
 	async function BuyNFT(){
 		let price1=sellprice*Math.pow(10,18);
+		let item=tokenID+1
 		let createMarketplaceSale=await contract.createMarketplaceSale(
 			// item
-			0,
+			item,
 			{value: price1}
 		)
 		
