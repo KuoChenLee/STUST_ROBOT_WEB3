@@ -67,7 +67,24 @@ import {
 	]
 	// 賣NFT的function
 	async function sell(){
-		//輸入tokenID找tokenURI
+		// let fetchItemsCreated=await contract.fetchItemsCreated();
+		// console.log(fetchItemsCreated)
+		// console.log(parseInt(fetchItemsCreated[0][1]))
+		// console.log(parseInt(fetchItemsCreated[1][1]))
+		// for(let i=0;i<fetchItemsCreated.length;i++){
+		// 	let num=parseInt(fetchItemsCreated[i][1])
+		// 	console.log(num)
+		// 	let tokenURI=await contract.tokenURI(num)
+		// 	console.log(tokenURI)
+		// 	let jsondata=await fetch(tokenURI);
+		// 	console.log(await jsondata.json())
+		// 	let json = await jsondata.json()
+		// 	//將這包物件設到NFTData裡
+		// 	console.log(json)
+		// 	setNFTData(json);
+		// }
+		// let num=parseInt(fetchItemsCreated[0][1])
+		// 輸入tokenID找tokenURI
 		let tokenURI=await contract.tokenURI(tokenID)
 		console.log(tokenURI)
 		//顯示tokenURI的資料放在jsondata裡
@@ -83,23 +100,32 @@ import {
 		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
 		// 將NFT_GIF的animation_url更新到json.animation_url裡
 		json.animation_url=NFT_GIF
-		// setURI(json.animation_url)
-		// for(let i=0;i<URI.length();i++){
-		// 	console.log(URI(i))
-		// }
+		
+
 		console.log(URI)
 		console.log(json)
 		// 將價格用WEI計算
+		try{
 		let price=sellprice*Math.pow(10,18);
 		// 觸發createMarketplaceItem來賣NFT
+		
 		let createMarketplaceItem=await contract.createMarketplaceItem(
 			tokenID,
 			price
 		)
+		}catch(error){
+			console.error("Error,please enter the price and tokenID")
+			
+		}
 		// let item=await contract.idtomarketplaceitem(0);
 		
 		// console.log(item.json())
+		
 	}
+	
+	
+		
+		
 	// 買NFT的function
 	async function BuyNFT(){
 		let price1=sellprice*Math.pow(10,18);
@@ -117,24 +143,24 @@ import {
 			
 	// 	});
 	// }
-	function renderCard(card,index){
+	// function renderCard(card,index){
 
 		
-		return(
-			<Card style={{ width: '20rem' }} key = {index} className="box" >
-			<Card.Img variant="top" src={card.animation_url} alt="robot" />
-			<Card.Body>
-			<Card.Title>{card.name}</Card.Title>
-			<Card.Text>
-				{card.price+"ETH"}
-				<br/>
-				<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button>
+	// 	return(
+	// 		<Card style={{ width: '20rem' }} key = {index} className="box" >
+	// 		<Card.Img variant="top" src={card.animation_url} alt="robot" />
+	// 		<Card.Body>
+	// 		<Card.Title>{card.name}</Card.Title>
+	// 		<Card.Text>
+	// 			{card.price+"ETH"}
+	// 			<br/>
+	// 			<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button>
 				
-			</Card.Text>
-			</Card.Body>
-    		</Card>
-		);
-	}
+	// 		</Card.Text>
+	// 		</Card.Body>
+    // 		</Card>
+	// 	);
+	// }
 	
 	return(
 		<div className='div20'>
@@ -180,8 +206,8 @@ import {
 							)}
 						</Row>
 				</div>
-				{cardInfo.map(renderCard)}
-
+				{/* {cardInfo.map(renderCard)} */}
+				
 				
 				</Row>
 				

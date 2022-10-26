@@ -51,10 +51,10 @@ function Home(){
         <div className='div10'>
           <Container className='scale-in-top'>
             
-            
+          <h2 className='text2'>How to get Robots?</h2>
               <div className="alert1">
-              <Col>
-              <h2 className='text2'>How to get Robots?</h2>
+              
+              
               <div>
                 <Alert className="alert2" variant="secondary"> 
                   
@@ -74,13 +74,13 @@ function Home(){
                       <a href='http://localhost:3000/Robot_Shop'>
                       <button className='button2'>Go to the shop ➝</button>
                       </a>
-                   
+                      <br/>
+                      <br/>
+                      <iframe src="https://kuochenlee.github.io/Robot_8/" width="700" height="690"/>
                 </Alert>
                 </div> 
-              </Col>
-              <Col>
-                 <iframe src="https://kuochenlee.github.io/Robot_8/" width="700" height="680"/>
-              </Col>            
+              
+                      
               </div>
               
             
