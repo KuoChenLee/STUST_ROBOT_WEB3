@@ -84,6 +84,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 #### 2.buy功能      完成
 #### 3.NFT賣在平台陳列在前端        未完成
 #### 4.NFT買完消失      未完成
-###　2.合約開發      未完成
+
+### 2.合約開發      未完成
 #### 1.fliprevealed 功能應完善
 #### 2.賦能NFT空頭      未完成
