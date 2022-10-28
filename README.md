@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,10 +67,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
  `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
 
+# 使用平台說明
 
-### `!!!!!!!!!!!!改善事項!!!!!!!!!!!!`
+### 1.先`git clone 'https://github.com/KuoChenLee/STUST_ROBOT_WEB3.git'`檔案或是下載ZIP檔
+    下載Vscode到終端機clone檔案
+### 2.再`npm install`下載Library
+
+### 3.假設沒有任何問題，先`cd (clone的檔案位置)`，再`npm start`
+
+# !!!!!!!!!!!!改善事項!!!!!!!!!!!!
 `1.Marketpalce開發 `      未完成
     *1.sell功能     完成
     *2.buy功能      完成

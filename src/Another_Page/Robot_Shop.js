@@ -31,6 +31,7 @@ import {
   });
 
   function Robot_Shop(props){
+	const [nfts, setNfts] = useState([])
 	const [tokenID,settokenID]=useState();
 	const [sellprice,setSellPrice]=useState();
 	const [address,setAddress]=useState(props.address);
@@ -67,6 +68,8 @@ import {
 	]
 	// 賣NFT的function
 	async function sell(){
+		let fetchItemsCreated=await contract.fetchItemsCreated();
+		
 		// let fetchItemsCreated=await contract.fetchItemsCreated();
 		// console.log(fetchItemsCreated)
 		// console.log(parseInt(fetchItemsCreated[0][1]))
@@ -122,8 +125,35 @@ import {
 		// console.log(item.json())
 		
 	}
-	
-	
+	//測試展示NFT
+	async function display(){
+		let fetchMarketplaceItems=await contract.fetchMarketplaceItems();
+		console.log(fetchMarketplaceItems)
+		const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
+			let tokenURI=await contract.tokenURI(tokenID)
+			let jsondata=await fetch(tokenURI)
+			console.log(jsondata)
+			let json = await jsondata.json()
+			//將這包物件設到NFTData裡
+			setNFTData(json);
+			console.log(json)
+			let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+			json.animation_url=NFT_GIF
+			const meta = await axios.get(NFT_GIF)
+
+			console.log(tokenURI)
+			const nft={
+				itemId:parseInt(i.itemId),
+				tokenId:parseInt(i.tokenId),
+				animation_url:NFT_GIF.animation_url,
+				name: NFT_GIF.name
+			}
+			return nft
+			console.log(nft)
+		}))
+		setNfts(nfts.filter(nft => nft !== null))
+		
+	}
 		
 		
 	// 買NFT的function
@@ -138,11 +168,7 @@ import {
 		
 	}
 	
-	// const itemdisplay=()=>{
-	// 	nftdata.array.forEach(element => {
-			
-	// 	});
-	// }
+	
 	// function renderCard(card,index){
 
 		
@@ -175,6 +201,7 @@ import {
 				</Col> */}
 				<Col>
 				<Row>
+				
 				<div >
 					{/* onChange取得值*/}
 				<input
@@ -206,9 +233,26 @@ import {
 							)}
 						</Row>
 				</div>
+				
 				{/* {cardInfo.map(renderCard)} */}
-				
-				
+				<button onClick={()=>display()}>Show</button>
+				<Row>
+				{
+					nfts.map((nft, i) => (
+						<Col md={2} className="p-3">
+								<Card key={i}>
+									<Card.Img variant='top' src={nft.animation_url}/>
+									<Card.Title>{nft.name}</Card.Title>
+									<Card.Body>
+										<br/>
+										<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
+									</Card.Body>
+								</Card>
+							</Col>
+					))
+            	}
+				</Row>
+         
 				</Row>
 				
 				</Col>
