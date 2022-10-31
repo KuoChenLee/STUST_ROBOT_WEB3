@@ -100,6 +100,11 @@
   background-color:gray;
   border-radius: 50px
 }
+.card_background:hover{
+  background-color:gray;
+  border-radius: 50px;
+  transform:scale(1.2);
+}
 .text8{
   color:#ffffff;
 }
