@@ -68,7 +68,6 @@ import {
 	]
 	// 賣NFT的function
 	async function sell(){
-		let fetchItemsCreated=await contract.fetchItemsCreated();
 		
 		// let fetchItemsCreated=await contract.fetchItemsCreated();
 		// console.log(fetchItemsCreated)
@@ -103,12 +102,12 @@ import {
 		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
 		// 將NFT_GIF的animation_url更新到json.animation_url裡
 		json.animation_url=NFT_GIF
-		
+		console.log(NFT_GIF)
 
 		console.log(URI)
 		console.log(json)
 		// 將價格用WEI計算
-		try{
+		
 		let price=sellprice*Math.pow(10,18);
 		// 觸發createMarketplaceItem來賣NFT
 		
@@ -116,10 +115,7 @@ import {
 			tokenID,
 			price
 		)
-		}catch(error){
-			console.error("Error,please enter the price and tokenID")
-			
-		}
+		
 		// let item=await contract.idtomarketplaceitem(0);
 		
 		// console.log(item.json())
@@ -127,31 +123,70 @@ import {
 	}
 	//測試展示NFT
 	async function display(){
+		
 		let fetchMarketplaceItems=await contract.fetchMarketplaceItems();
 		console.log(fetchMarketplaceItems)
 		const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
 			let tokenURI=await contract.tokenURI(tokenID)
-			let jsondata=await fetch(tokenURI)
-			console.log(jsondata)
-			let json = await jsondata.json()
-			//將這包物件設到NFTData裡
-			setNFTData(json);
-			console.log(json)
-			let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
-			json.animation_url=NFT_GIF
-			const meta = await axios.get(NFT_GIF)
-
 			console.log(tokenURI)
+			// let jsondata=await fetch(i.tokenURI)
+			// console.log(jsondata)
+			// let json = await jsondata.json()
+			// //將這包物件設到NFTData裡
+			// console.log(json.animation_url)
+			// let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+			// json.animation_url=NFT_GIF
+			// console.log(nftdata)
+			const meta = await axios.get(tokenURI)
+			console.log(meta)
 			const nft={
 				itemId:parseInt(i.itemId),
 				tokenId:parseInt(i.tokenId),
-				animation_url:NFT_GIF.animation_url,
-				name: NFT_GIF.name
+				animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
+				name: "STUST_ROBOTS #"+parseInt(i.tokenId)
 			}
-			return nft
 			console.log(nft)
+			return nft
+			
 		}))
 		setNfts(nfts.filter(nft => nft !== null))
+		console.log(nfts)
+		let price=sellprice*Math.pow(10,18);
+		// 觸發createMarketplaceItem來賣NFT
+		
+		let createMarketplaceItem=await contract.createMarketplaceItem(
+			tokenID,
+			price
+		)
+	}
+	function show(){
+		
+			return (
+					<Row>
+
+									{/*如果有nftdata才顯示*/}
+									
+						{
+							nfts.map((nft, i) => (
+								<Col md={2} className="p-3">
+										<Card key={i} className="card_background">
+											<Card.Img variant='bottom' src={nft.animation_url}/>
+											<Card.Title className='text8'>{nft.name}</Card.Title>
+											<Card.Body>
+												<br/>
+												{/* <button class="custom-btn btn-9">Read More</button> */}
+												<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
+											</Card.Body>
+										</Card>
+									</Col>
+							))
+						}
+						
+					</Row>
+					
+			)
+				
+		
 		
 	}
 		
@@ -216,10 +251,10 @@ import {
 					onChange={(e)=>setSellPrice(e.target.value)}
 				>
 				</input>
-					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button>
-						<Row>
+					<Button variant='success' onClick={()=>display()}>Sell Robots</Button>
+						 {/* <Row> */}
 							{/*如果有nftdata才顯示*/}
-							{nftdata&&[nftdata].map(({name,animation_url})=>
+							{/* {nftdata&&[nftdata].map(({name,animation_url})=>
 							<Col md={2} className="p-3">
 								<Card>
 									<Card.Img variant='top' src={animation_url}/>
@@ -230,27 +265,29 @@ import {
 									</Card.Body>
 								</Card>
 							</Col>
-							)}
-						</Row>
+							)} */}
+							{/* {
+								nfts.map((nft, i) => (
+									<Col md={2} className="p-3">
+											<Card key={i}>
+												<Card.Img variant='top' src={nft.animation_url}/>
+												<Card.Title>{nft.name}</Card.Title>
+												<Card.Body>
+													<br/>
+													<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
+												</Card.Body>
+											</Card>
+										</Col>
+								))
+							} */}
+						{/* </Row>  */}
+						{show()}
 				</div>
 				
 				{/* {cardInfo.map(renderCard)} */}
-				<button onClick={()=>display()}>Show</button>
+				{/* <button onClick={()=>display()}>Show</button> */}
 				<Row>
-				{
-					nfts.map((nft, i) => (
-						<Col md={2} className="p-3">
-								<Card key={i}>
-									<Card.Img variant='top' src={nft.animation_url}/>
-									<Card.Title>{nft.name}</Card.Title>
-									<Card.Body>
-										<br/>
-										<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
-									</Card.Body>
-								</Card>
-							</Col>
-					))
-            	}
+				
 				</Row>
          
 				</Row>
