@@ -31,6 +31,7 @@ import {
   });
 
   function Robot_Shop(props){
+	const [loadingState, setLoadingState] = useState('not-loaded')
 	const [nfts, setNfts] = useState([])
 	const [tokenID,settokenID]=useState();
 	const [sellprice,setSellPrice]=useState();
@@ -66,6 +67,7 @@ import {
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/19.gif",name:"STUST_ROBOTS #19",price:"0.003"},
 		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/20.gif",name:"STUST_ROBOTS #20",price:"0.003"}
 	]
+	useEffect(() => { display() }, [])
 	// 賣NFT的function
 	async function sell(){
 		
@@ -122,11 +124,50 @@ import {
 		
 	}
 	//測試展示NFT
+	// async function display(){
+		
+	// 	let fetchMarketplaceItems=await contract.fetchMarketplaceItems();
+	// 	console.log(fetchMarketplaceItems)
+	// 	const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
+	// 		let tokenURI=await contract.tokenURI(tokenID)
+	// 		console.log(tokenURI)
+	// 		// let jsondata=await fetch(i.tokenURI)
+	// 		// console.log(jsondata)
+	// 		// let json = await jsondata.json()
+	// 		// //將這包物件設到NFTData裡
+	// 		// console.log(json.animation_url)
+	// 		// let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+	// 		// json.animation_url=NFT_GIF
+	// 		// console.log(nftdata)
+	// 		const meta = await axios.get(tokenURI)
+	// 		console.log(meta)
+	// 		const nft={
+	// 			itemId:parseInt(i.itemId),
+	// 			tokenId:parseInt(i.tokenId),
+	// 			animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
+	// 			name: "STUST_ROBOTS #"+parseInt(i.tokenId)
+	// 		}
+	// 		console.log(nft)
+	// 		return nft
+			
+	// 	}))
+	// 	setNfts(nfts.filter(nft => nft !== null))
+	// 	setLoadingState('loaded') 
+	// 	console.log(nfts)
+	// 	let price=sellprice*Math.pow(10,18);
+	// 	// 觸發createMarketplaceItem來賣NFT
+		
+	// 	let createMarketplaceItem=await contract.createMarketplaceItem(
+	// 		tokenID,
+	// 		price
+	// 	)
+	// }
 	async function display(){
 		
 		let fetchMarketplaceItems=await contract.fetchMarketplaceItems();
 		console.log(fetchMarketplaceItems)
 		const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
+		
 			let tokenURI=await contract.tokenURI(tokenID)
 			console.log(tokenURI)
 			// let jsondata=await fetch(i.tokenURI)
@@ -150,6 +191,7 @@ import {
 			
 		}))
 		setNfts(nfts.filter(nft => nft !== null))
+		setLoadingState('loaded') 
 		console.log(nfts)
 		let price=sellprice*Math.pow(10,18);
 		// 觸發createMarketplaceItem來賣NFT
@@ -165,17 +207,17 @@ import {
 					<Row>
 
 									{/*如果有nftdata才顯示*/}
-									
+								
 						{
 							nfts.map((nft, i) => (
-								<Col md={2} className="p-3">
-										<Card key={i} className="card_background">
+								<Col md={2} className="p-3" >
+										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
 											<Card.Img variant='bottom' src={nft.animation_url}/>
 											<Card.Title className='text8'>{nft.name}</Card.Title>
 											<Card.Body>
 												<br/>
 												{/* <button class="custom-btn btn-9">Read More</button> */}
-												<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
+												<span className='text8'>{sellprice+"ETH"}</span>
 											</Card.Body>
 										</Card>
 									</Col>
@@ -193,6 +235,7 @@ import {
 		
 	// 買NFT的function
 	async function BuyNFT(){
+		console.log(nfts)
 		let price1=sellprice*Math.pow(10,18);
 		let item=tokenID+1
 		let createMarketplaceSale=await contract.createMarketplaceSale(
@@ -281,7 +324,8 @@ import {
 								))
 							} */}
 						{/* </Row>  */}
-						{show()}
+						
+						{(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:show()}
 				</div>
 				
 				{/* {cardInfo.map(renderCard)} */}
