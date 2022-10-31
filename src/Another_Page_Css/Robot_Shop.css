@@ -130,6 +130,15 @@
   font-family:fantasy;
   font-size: 24px;
 }
+.word3{
+  position: absolute;
+  right: 30px;
+  bottom:40px;
+  z-index: 101;
+  color: #08090a28;
+  font-family:fantasy;
+  font-size: 40px;
+}
 .text8{
   color:#ffffff;
   font-family:fantasy;

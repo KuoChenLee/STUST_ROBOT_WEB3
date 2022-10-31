@@ -215,9 +215,12 @@ import {
 										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
 											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
 											<div className='word2'><p>{nft.name}</p></div> 
+											<div className='word3'><p>STUST UNIVERSE</p></div> 
 											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
 											<Card.Body>
+												
 												<span className='text8'>Price:{sellprice+"ETH"}</span>
+												
 											</Card.Body>
 										</Card>
 									</Col>
