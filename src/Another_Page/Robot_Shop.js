@@ -213,7 +213,7 @@ import {
 							nfts.map((nft, i) => (
 								<Col md={2} className="p-3" >
 										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
-											<Card.Img variant='bottom' src={nft.animation_url}/>
+											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
 											<div className='word2'><p>{nft.name}</p></div> 
 											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
 											<Card.Body>
