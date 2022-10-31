@@ -4,7 +4,7 @@
     
 }
 .div20{
-    background-color: #117bd7;
+    background-color: #A7C957;
     
 }
 .div21{
@@ -97,24 +97,35 @@
 
 
 .card_background{
-  background-color:gray;
+  background-color:rgb(62, 181, 221);
   border-radius: 50px;
   z-index: 100;
 }
 .card_background:hover{
-  background-color:gray;
+  background-color:#E0AAFF;
   border-radius: 50px;
   transform:scale(1.2);
 }
-.word{
+.word1{
   position: absolute;
-  left: 0px;
+  right: 20px;
+  bottom: 80px;
+  z-index: 101;
+  color:black;
+  font-weight:bold;
+}
+.word2{
+  position: absolute;
+  left: 10px;
   top: 0px;
   z-index: 101;
-  color: #da4fab;
+  color: #212529;
+  font-family:fantasy;
+  font-size: 24px;
 }
 .text8{
   color:#ffffff;
+  font-family:fantasy;
 }
 
 

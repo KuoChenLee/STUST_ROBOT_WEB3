@@ -184,7 +184,8 @@ import {
 				itemId:parseInt(i.itemId),
 				tokenId:parseInt(i.tokenId),
 				animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
-				name: "STUST_ROBOTS #"+parseInt(i.tokenId)
+				name: "STUST ROBOTS #"+parseInt(i.tokenId),
+				price:parseInt(i.price)
 			}
 			console.log(nft)
 			return nft
@@ -213,19 +214,19 @@ import {
 								<Col md={2} className="p-3" >
 										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
 											<Card.Img variant='bottom' src={nft.animation_url}/>
-											<div className='word'><p>0.003eth</p></div> 
-											<Card.Title className='text8'>{nft.name}</Card.Title>
+											<div className='word2'><p>{nft.name}</p></div> 
+											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
 											<Card.Body>
-												<br/>
-												{/* <button class="custom-btn btn-9">Read More</button> */}
-												<span className='text8'>{sellprice+"ETH"}</span>
+												<span className='text8'>Price:{sellprice+"ETH"}</span>
 											</Card.Body>
 										</Card>
 									</Col>
 							))
 						}
 						
+						
 					</Row>
+
 					
 			)
 				

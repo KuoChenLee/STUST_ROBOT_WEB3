@@ -167,10 +167,13 @@
   background-size: contain, cover;
   background-repeat: no-repeat, repeat;
 }
-
-.button1:hover{
-  background-color: #6a994e;
+.button1{
+  background-color: #09090f;
   color:white;
+}
+.button1:hover{
+  background-color: #e1ee72;
+  color:black;
   border-radius: 12px;
   font-size: 20px;
 }
