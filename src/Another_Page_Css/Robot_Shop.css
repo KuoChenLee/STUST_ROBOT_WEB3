@@ -98,12 +98,20 @@
 
 .card_background{
   background-color:gray;
-  border-radius: 50px
+  border-radius: 50px;
+  z-index: 100;
 }
 .card_background:hover{
   background-color:gray;
   border-radius: 50px;
   transform:scale(1.2);
+}
+.word{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 101;
+  color: #da4fab;
 }
 .text8{
   color:#ffffff;

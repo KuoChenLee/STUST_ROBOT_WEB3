@@ -213,6 +213,7 @@ import {
 								<Col md={2} className="p-3" >
 										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
 											<Card.Img variant='bottom' src={nft.animation_url}/>
+											<div className='word'><p>0.003eth</p></div> 
 											<Card.Title className='text8'>{nft.name}</Card.Title>
 											<Card.Body>
 												<br/>
