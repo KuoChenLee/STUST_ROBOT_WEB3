@@ -21,9 +21,9 @@ import Empowerment from './Another_Page/Empowerment.js';
 import Robot_Shop from './Another_Page/Robot_Shop.js';
 // import contractaddress from'../src/contractaddress.json';
 // import ABI from'../src/contractabi.json';
-import contractaddress from'./contractaddress.json';
-import ABI from'./contractabi.json';
-
+import contractaddress from './contractaddress.json';
+import ABI from './contractabi.json';
+import Fet from './Another_Page/Robot_Shop.js';
 const web3Modal = new Web3Modal({
   network: "Goerli", // testnet
   providerOptions: {} 
@@ -1029,7 +1029,7 @@ function App() {
       setNotClick((notisClick)=>!notisClick);
       console.log(notisClick);
     }
-  
+	
  
   return (
     <div className="App">

@@ -1,5 +1,5 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card,Form,FloatingLabel} from 'react-bootstrap';
+import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card,Form,FloatingLabel,Modal} from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Another_Page_Css/Robot_Shop.css';
@@ -33,7 +33,7 @@ import {
   function Robot_Shop(props){
 	const [loadingState, setLoadingState] = useState('not-loaded')
 	const [nfts, setNfts] = useState([])
-	const [tokenID,settokenID]=useState();
+	const [tokenID,settokenID]=useState([]);
 	const [sellprice,setSellPrice]=useState();
 	const [address,setAddress]=useState(props.address);
 	const [balance,setBalance]=useState('');
@@ -164,10 +164,11 @@ import {
 	// }
 	async function display(){
 		
-		let fetchMarketplaceItems=await contract.fetchMarketplaceItems();
+		const fetchMarketplaceItems=await contract.fetchMarketplaceItems()
 		console.log(fetchMarketplaceItems)
 		const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
-		
+			// let Fettoken=fetchMarketplaceItems[i]
+			// console.log(Fettoken)
 			let tokenURI=await contract.tokenURI(tokenID)
 			console.log(tokenURI)
 			// let jsondata=await fetch(i.tokenURI)
@@ -183,6 +184,7 @@ import {
 			const nft={
 				itemId:parseInt(i.itemId),
 				tokenId:parseInt(i.tokenId),
+				sold:i.sold,
 				animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
 				name: "STUST ROBOTS #"+parseInt(i.tokenId),
 				price:parseInt(i.price)
@@ -211,7 +213,7 @@ import {
 								
 						{
 							nfts.map((nft, i) => (
-								<Col md={2} className="p-3" >
+								<Col md={4} className="p-3" >
 										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
 											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
 											<div className='word2'><p>{nft.name}</p></div> 
@@ -251,6 +253,53 @@ import {
 		
 	}
 	
+	function Example() {
+		const [show, setShow] = useState(false);
+		const handleClose = () => setShow(false);
+		const handleShow = () => setShow(true);
+	  
+		return (
+		  <>
+			<Button variant="primary" onClick={handleShow}>
+			  Sell
+			</Button>
+	  
+			<Modal
+			  show={show}
+			  onHide={handleClose}
+			  backdrop="static"
+			  keyboard={false}
+			>
+			  <Modal.Header closeButton>
+				<Modal.Title className='text7'>Sell the Robot</Modal.Title>
+			  </Modal.Header>
+			  <Modal.Body>
+			  <input
+					title="STUST ROBOT TokenID"
+					placeholder="STUST ROBOT #?"
+					onChange={(e)=>settokenID(e.target.value)}
+				>
+				</input>
+				<br/>
+				<input
+					title="Sell Price"
+					placeholder="Price"
+					onChange={(e)=>setSellPrice(e.target.value)}
+				>
+				</input>
+			  </Modal.Body>
+			  <Modal.Footer>
+				<Button variant="secondary" onClick={handleClose}>
+				  Cancel
+				</Button>
+				<Button variant='success' onClick={()=>display()&&handleClose}>
+					Sell Robots
+				</Button>
+			  </Modal.Footer>
+			</Modal>
+		  </>
+		);
+	}
 	
 	// function renderCard(card,index){
 
@@ -329,8 +378,11 @@ import {
 								))
 							} */}
 						{/* </Row>  */}
+						<Example/>
+						<Container>
+							{(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:show()}
+						</Container>
 						
-						{(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:show()}
 				</div>
 				
 				{/* {cardInfo.map(renderCard)} */}
