@@ -31,6 +31,9 @@ import {
   });
 
   function Robot_Shop(props){
+	const [show, setShow] = useState(false);
+	const input1 = useRef(1)
+	const input2 = useRef(2)
 	const [loadingState, setLoadingState] = useState('not-loaded')
 	const [nfts, setNfts] = useState([])
 	const [tokenID,settokenID]=useState([]);
@@ -69,31 +72,17 @@ import {
 	]
 	useEffect(() => { display() }, [])
 	// 賣NFT的function
-	async function sell(){
-		
-		// let fetchItemsCreated=await contract.fetchItemsCreated();
-		// console.log(fetchItemsCreated)
-		// console.log(parseInt(fetchItemsCreated[0][1]))
-		// console.log(parseInt(fetchItemsCreated[1][1]))
-		// for(let i=0;i<fetchItemsCreated.length;i++){
-		// 	let num=parseInt(fetchItemsCreated[i][1])
-		// 	console.log(num)
-		// 	let tokenURI=await contract.tokenURI(num)
-		// 	console.log(tokenURI)
-		// 	let jsondata=await fetch(tokenURI);
-		// 	console.log(await jsondata.json())
-		// 	let json = await jsondata.json()
-		// 	//將這包物件設到NFTData裡
-		// 	console.log(json)
-		// 	setNFTData(json);
-		// }
-		// let num=parseInt(fetchItemsCreated[0][1])
+	async function sell(input1,input2){
+		setShow(false)
+		settokenID(input1)
+		setSellPrice(input2)
+		console.log(input1)
 		// 輸入tokenID找tokenURI
 		let tokenURI=await contract.tokenURI(tokenID)
-		console.log(tokenURI)
+		// console.log(tokenURI)
 		//顯示tokenURI的資料放在jsondata裡
 		let jsondata=await fetch(tokenURI);
-		console.log(jsondata)
+		// console.log(jsondata)
 		//將jsondata用json物件形式解譯
 		let json = await jsondata.json()
 		//將這包物件設到NFTData裡
@@ -117,59 +106,23 @@ import {
 			tokenID,
 			price
 		)
-		
-		// let item=await contract.idtomarketplaceitem(0);
-		
-		// console.log(item.json())
-		
 	}
-	//測試展示NFT
-	// async function display(){
-		
-	// 	let fetchMarketplaceItems=await contract.fetchMarketplaceItems();
-	// 	console.log(fetchMarketplaceItems)
-	// 	const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
-	// 		let tokenURI=await contract.tokenURI(tokenID)
-	// 		console.log(tokenURI)
-	// 		// let jsondata=await fetch(i.tokenURI)
-	// 		// console.log(jsondata)
-	// 		// let json = await jsondata.json()
-	// 		// //將這包物件設到NFTData裡
-	// 		// console.log(json.animation_url)
-	// 		// let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
-	// 		// json.animation_url=NFT_GIF
-	// 		// console.log(nftdata)
-	// 		const meta = await axios.get(tokenURI)
-	// 		console.log(meta)
-	// 		const nft={
-	// 			itemId:parseInt(i.itemId),
-	// 			tokenId:parseInt(i.tokenId),
-	// 			animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
-	// 			name: "STUST_ROBOTS #"+parseInt(i.tokenId)
-	// 		}
-	// 		console.log(nft)
-	// 		return nft
-			
-	// 	}))
-	// 	setNfts(nfts.filter(nft => nft !== null))
-	// 	setLoadingState('loaded') 
-	// 	console.log(nfts)
-	// 	let price=sellprice*Math.pow(10,18);
-	// 	// 觸發createMarketplaceItem來賣NFT
-		
-	// 	let createMarketplaceItem=await contract.createMarketplaceItem(
-	// 		tokenID,
-	// 		price
-	// 	)
-	// }
+	function handleClick() {
+		console.log("test")
+		console.log(input1.current.value);
+		console.log(input2.current.value);
+	}
 	async function display(){
 		
 		const fetchMarketplaceItems=await contract.fetchMarketplaceItems()
+		
 		console.log(fetchMarketplaceItems)
 		const nfts=await Promise.all(fetchMarketplaceItems.map(async(i)=>{
-			// let Fettoken=fetchMarketplaceItems[i]
+			let Fettoken=i.tokenId;
+			console.log(i.tokenId)
+			// let Fettoken=await fetchMarketplaceItems[i][1]
 			// console.log(Fettoken)
-			let tokenURI=await contract.tokenURI(tokenID)
+			let tokenURI=await contract.tokenURI(Fettoken)
 			console.log(tokenURI)
 			// let jsondata=await fetch(i.tokenURI)
 			// console.log(jsondata)
@@ -187,7 +140,7 @@ import {
 				sold:i.sold,
 				animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
 				name: "STUST ROBOTS #"+parseInt(i.tokenId),
-				price:parseInt(i.price)
+				price:parseInt(i.price)/Math.pow(10,18)
 			}
 			console.log(nft)
 			return nft
@@ -196,16 +149,12 @@ import {
 		setNfts(nfts.filter(nft => nft !== null))
 		setLoadingState('loaded') 
 		console.log(nfts)
-		let price=sellprice*Math.pow(10,18);
-		// 觸發createMarketplaceItem來賣NFT
 		
-		let createMarketplaceItem=await contract.createMarketplaceItem(
-			tokenID,
-			price
-		)
 	}
-	function show(){
-		
+	function showNFT(){
+		if (loadingState === 'loaded' && !nfts.length) {
+			return (<h1 className="px-20 py-10 text-3xl">No pets available!</h1>)
+		  } else {
 			return (
 					<Row>
 
@@ -214,14 +163,14 @@ import {
 						{
 							nfts.map((nft, i) => (
 								<Col md={4} className="p-3" >
-										<Card key={i} className="card_background" onClick={()=>BuyNFT()}>
+										<Card key={i} className="card_background" onClick={()=>BuyNFT(nft)}>
 											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
 											<div className='word2'><p>{nft.name}</p></div> 
 											<div className='word3'><p>STUST UNIVERSE</p></div> 
 											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
 											<Card.Body>
 												
-												<span className='text8'>Price:{sellprice+"ETH"}</span>
+												<span className='text8'>Price: {nft.price} ETH</span>
 												
 											</Card.Body>
 										</Card>
@@ -235,26 +184,28 @@ import {
 					
 			)
 				
-		
+					}
 		
 	}
 		
 		
 	// 買NFT的function
-	async function BuyNFT(){
-		console.log(nfts)
-		let price1=sellprice*Math.pow(10,18);
-		let item=tokenID+1
+	async function BuyNFT(nft){
+		console.log(nft)
+		let price=nft.price*Math.pow(10,18);
 		let createMarketplaceSale=await contract.createMarketplaceSale(
 			// item
-			item,
-			{value: price1}
+			nft.itemId,
+			{value: price}
 		)
 		
 	}
 	
 	function Example() {
-		const [show, setShow] = useState(false);
+		
+
+		
+		
 		const handleClose = () => setShow(false);
 		const handleShow = () => setShow(true);
 	  
@@ -277,14 +228,14 @@ import {
 			  <input
 					title="STUST ROBOT TokenID"
 					placeholder="STUST ROBOT #?"
-					onChange={(e)=>settokenID(e.target.value)}
+					ref={input1}
 				>
 				</input>
 				<br/>
 				<input
 					title="Sell Price"
 					placeholder="Price"
-					onChange={(e)=>setSellPrice(e.target.value)}
+					ref={input2}
 				>
 				</input>
 			  </Modal.Body>
@@ -292,33 +243,62 @@ import {
 				<Button variant="secondary" onClick={handleClose}>
 				  Cancel
 				</Button>
-				<Button variant='success' onClick={()=>display()&&handleClose}>
-					Sell Robots
+				<Button variant='success' >
+					<Button variant='success' onClick={()=>{
+						sell(input1.current.value,input2.current.value)}} >
+						Sell Robots
+					</Button>
+					
 				</Button>
 			  </Modal.Footer>
 			</Modal>
 		  </>
 		);
 	}
-	
-	// function renderCard(card,index){
 
-		
-	// 	return(
-	// 		<Card style={{ width: '20rem' }} key = {index} className="box" >
-	// 		<Card.Img variant="top" src={card.animation_url} alt="robot" />
-	// 		<Card.Body>
-	// 		<Card.Title>{card.name}</Card.Title>
-	// 		<Card.Text>
-	// 			{card.price+"ETH"}
-	// 			<br/>
-	// 			<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{card.price+"ETH"}</span></button>
-				
-	// 		</Card.Text>
-	// 		</Card.Body>
-    // 		</Card>
-	// 	);
-	// }
+	
+
+// function Example() {
+//   const [show, setShow] = useState(false);
+
+//   const handleClose = () => setShow(false);
+//   const handleShow = () => setShow(true);
+
+//   return (
+//     <>
+//       <Button variant="primary" onClick={handleShow}>
+//         Launch demo modal
+//       </Button>
+
+//       <Modal show={show} onHide={handleClose}>
+//         <Modal.Header closeButton>
+//           <Modal.Title>Modal heading</Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+// 			<input
+// 			title="STUST ROBOT TokenID"
+// 			placeholder="STUST ROBOT #?"
+// 			></input>
+// 			<input
+// 			title="STUST ROBOT TokenID"
+// 			placeholder="STUST ROBOT #?"
+// 			></input>
+// 		</Modal.Body>
+//         <Modal.Footer>
+//           <Button variant="secondary" onClick={handleClose}>
+//             Close
+//           </Button>
+//           <Button variant="primary" onClick={handleClose}>
+//             Save Changes
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+//     </>
+//   );
+// }
+
+	
+	
 	
 	return(
 		<div className='div20'>
@@ -329,14 +309,13 @@ import {
 			
 			<Row>
 				{/* Maybe 查詢選單? */}
-				{/* <Col>
-				</Col> */}
+				
 				<Col>
 				<Row>
 				
 				<div >
 					{/* onChange取得值*/}
-				<input
+				{/* <input
 					title="STUST ROBOT TokenID"
 					placeholder="STUST ROBOT #?"
 					onChange={(e)=>settokenID(e.target.value)}
@@ -348,45 +327,15 @@ import {
 					onChange={(e)=>setSellPrice(e.target.value)}
 				>
 				</input>
-					<Button variant='success' onClick={()=>display()}>Sell Robots</Button>
-						 {/* <Row> */}
-							{/*如果有nftdata才顯示*/}
-							{/* {nftdata&&[nftdata].map(({name,animation_url})=>
-							<Col md={2} className="p-3">
-								<Card>
-									<Card.Img variant='top' src={animation_url}/>
-									<Card.Title>{name}</Card.Title>
-									<Card.Body>
-										<br/>
-										<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
-									</Card.Body>
-								</Card>
-							</Col>
-							)} */}
-							{/* {
-								nfts.map((nft, i) => (
-									<Col md={2} className="p-3">
-											<Card key={i}>
-												<Card.Img variant='top' src={nft.animation_url}/>
-												<Card.Title>{nft.name}</Card.Title>
-												<Card.Body>
-													<br/>
-													<button class="custom-btn btn-12" onClick={()=>BuyNFT()}><span>Buy now</span><span>{sellprice+"ETH"}</span></button>
-												</Card.Body>
-											</Card>
-										</Col>
-								))
-							} */}
-						{/* </Row>  */}
+					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button> */}
+						 
 						<Example/>
 						<Container>
-							{(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:show()}
+							{(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:showNFT()}
 						</Container>
 						
 				</div>
 				
-				{/* {cardInfo.map(renderCard)} */}
-				{/* <button onClick={()=>display()}>Show</button> */}
 				<Row>
 				
 				</Row>

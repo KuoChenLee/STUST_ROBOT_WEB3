@@ -19,6 +19,7 @@ import Attribute from './Another_Page/Attribute.js';
 import Mint from './Another_Page/Mint.js';
 import Empowerment from './Another_Page/Empowerment.js';
 import Robot_Shop from './Another_Page/Robot_Shop.js';
+import Account from './Another_Page/Account.js';
 // import contractaddress from'../src/contractaddress.json';
 // import ABI from'../src/contractabi.json';
 import contractaddress from './contractaddress.json';
@@ -1052,7 +1053,7 @@ function App() {
 						{address?(ens||shortenAddr(address)):'Connect Wallet'}
 						</Button>
 					</div>
-					
+					<Link className='text1' to="/account"><button className='button1'>Account</button></Link>
 					</Container>
 
 			</Navbar>
@@ -1064,7 +1065,8 @@ function App() {
 					<Route path="/Attribute" element={<Attribute/>} />
 					<Route path="/Mint" element={<Mint contract={contract} address={address} notisClick={notisClick} isClick={isClick} contractAddr={contractAddr} abi={abi}/>} />
 					<Route path="/Empowerment" element={<Empowerment/>} />
-					<Route path="/Robot_Shop" element={<Robot_Shop contract={contract} address={address} notisClick={notisClick} isClick={isClick} contractAddr={contractAddr} abi={abi}/>} />
+					<Route path="/Robot_Shop" element={<Robot_Shop contract={contract} address={address} notisClick={notisClick} isClick={isClick}/>} />
+					<Route path="/Account" element={<Account address={address} contract={contract}  contractAddr={contractAddr} abi={abi} balance={balance}/>}/>
 				</Routes>
 		</Router>
       </div>
