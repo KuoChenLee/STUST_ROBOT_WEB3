@@ -266,3 +266,10 @@
   font-family:fantasy;
 }
 
+.header{
+  width: 50px;
+}
+.header:hover{
+  background-color: #FFFFFF;
+  border-radius: 50%;
+}

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {  ethers } from "ethers";
 import Web3Modal from "web3modal";
 import React,{useState,useEffect} from 'react';
+import background from'./image/p11.png';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -1053,7 +1054,7 @@ function App() {
 						{address?(ens||shortenAddr(address)):'Connect Wallet'}
 						</Button>
 					</div>
-					<Link className='text1' to="/account"><button className='button1'>Account</button></Link>
+					<Link className='text1' to="/account"><img className='header' src={background} alt="background"/></Link>
 					</Container>
 
 			</Navbar>
@@ -1066,7 +1067,7 @@ function App() {
 					<Route path="/Mint" element={<Mint contract={contract} address={address} notisClick={notisClick} isClick={isClick} contractAddr={contractAddr} abi={abi}/>} />
 					<Route path="/Empowerment" element={<Empowerment/>} />
 					<Route path="/Robot_Shop" element={<Robot_Shop contract={contract} address={address} notisClick={notisClick} isClick={isClick}/>} />
-					<Route path="/Account" element={<Account address={address} contract={contract}  contractAddr={contractAddr} abi={abi} balance={balance}/>}/>
+					<Route path="/Account" element={<Account address={address} contract={contract}  contractAddr={contractAddr} abi={abi} balance={balance} isClick={isClick}/>}/>
 				</Routes>
 		</Router>
       </div>

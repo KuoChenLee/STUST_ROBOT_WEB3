@@ -33,6 +33,7 @@ import { getByDisplayValue } from '@testing-library/react';
   });
 
 function Account(props){
+    const [isClick,setClick]=useState(props.isClick);
     const [nfts, setNfts] = useState([])
     const [loadingState, setLoadingState] = useState('not-loaded')
     const [address,setAddress]=useState(props.address);
@@ -78,8 +79,8 @@ function Account(props){
 								
 						{
 							nfts.map((nft, i) => (
-                                nft.owner===address?
-                                    <Col md={4} className="p-3" >
+                                
+                                nft.owner===address?<Col md={4} className="p-3" >
 										<Card key={i} className="card_background">
 											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
 											<div className='word2'><p>{nft.name}</p></div> 
@@ -90,8 +91,7 @@ function Account(props){
 												
 												
 											</Card.Body>
-										</Card>
-									</Col>:""
+										</Card></Col>:""
                                 
 								
 							))
@@ -111,12 +111,14 @@ function Account(props){
        
        
         return(
-            <Alert variant='dark'>
+            <Alert variant='dark' className='text7'>
                 {shortenAddr(address)}
                 <hr/>
                 {(1*balance).toFixed(2)}Ethers
             </Alert>
         )
+       
+        
     }
     return (
         <div className='div15'>
@@ -126,7 +128,8 @@ function Account(props){
             <Container>
 
                 <Row>
-                    <Account_display/>
+                
+                {isClick===false?<h1>Connect Your Wallet</h1>:<Account_display/>}
                 </Row>
                 <Row className='div5'>
                     {/* <Router>
@@ -140,7 +143,10 @@ function Account(props){
                    
                 </Row>
             </Container>
-            
+            <div className='div12'>
+			  	<br/>
+				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
+			</div>
             
         </div>
     )
