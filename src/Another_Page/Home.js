@@ -66,13 +66,13 @@ function Home(){
                         First way.You need to connect wallet.And get some Ethers coins to buy a Blind Box.Open it .And you get a Robot!
                       </h6>
                       <a href='http://localhost:3000/Mint'>
-                      <button className='button2'>Go to buy a Blind Box ➝</button>
+                      <Button className='button10'><span>Go to buy a Blind Box</span></Button>
                       </a>
                       <h6 className='text3'>
                         Second way.If you want to choise Robot which you like.You can click this Button and go to the shop buy the Robot which you like.
                       </h6>
                       <a href='http://localhost:3000/Robot_Shop'>
-                      <button className='button2'>Go to the shop ➝</button>
+                      <Button className='button10'><span>Go to the shop</span></Button>
                       </a>
                       <br/>
                       <br/>

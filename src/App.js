@@ -1041,11 +1041,13 @@ function App() {
 			
 				<Container>
 				<Navbar.Brand to="/" className='text7'>STUST NFT Universe</Navbar.Brand>
+				
 					<Link className='text1' to="/Home" ><button className='button1'>Home</button></Link>
 					<Link className='text1' to="/Attribute"><button className='button1'>Attribute</button></Link>
 					<Link className='text1' to="/Mint"><button className='button1'>Mint</button></Link>
 					<Link className='text1' to='/Empowerment'><button className='button1'>Empowerment</button></Link>
 					<Link className='text1' to="/Robot_Shop"><button className='button1'>Robot_Shop</button></Link>
+				
 					<div>
 						{address&&<span className='me-2' >
 						{(1*balance).toFixed(2)}Ethers
