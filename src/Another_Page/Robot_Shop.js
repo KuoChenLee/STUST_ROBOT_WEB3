@@ -47,29 +47,7 @@ import {
 	const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
 	const [nftdata,setNFTData]=useState();
 	const [URI,setURI]=useState([]);
-	const cardInfo=[
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/0.gif",name:"STUST_ROBOTS #0",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/1.gif",name:"STUST_ROBOTS #1",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/2.gif",name:"STUST_ROBOTS #2",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/3.gif",name:"STUST_ROBOTS #3",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/4.gif",name:"STUST_ROBOTS #4",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/5.gif",name:"STUST_ROBOTS #5",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/6.gif",name:"STUST_ROBOTS #6",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/7.gif",name:"STUST_ROBOTS #7",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/8.gif",name:"STUST_ROBOTS #8",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/9.gif",name:"STUST_ROBOTS #9",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/10.gif",name:"STUST_ROBOTS #10",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/11.gif",name:"STUST_ROBOTS #11",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/12.gif",name:"STUST_ROBOTS #12",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/13.gif",name:"STUST_ROBOTS #13",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/14.gif",name:"STUST_ROBOTS #14",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/15.gif",name:"STUST_ROBOTS #15",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/16.gif",name:"STUST_ROBOTS #16",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/17.gif",name:"STUST_ROBOTS #17",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/18.gif",name:"STUST_ROBOTS #18",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/19.gif",name:"STUST_ROBOTS #19",price:"0.003"},
-		{animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/20.gif",name:"STUST_ROBOTS #20",price:"0.003"}
-	]
+	
 	useEffect(() => { display() }, [])
 	// 賣NFT的function
 	async function sell(input1,input2){
@@ -211,8 +189,8 @@ import {
 	  
 		return (
 		  <>
-			<Button variant="primary" onClick={handleShow}>
-			  Sell
+			<Button variant="primary" className='button'  onClick={handleShow}>
+			  <span className='text7'>Sell the Robots</span>
 			</Button>
 	  
 			<Modal
@@ -244,7 +222,7 @@ import {
 				  Cancel
 				</Button>
 				<Button variant='success' >
-					<Button variant='success' onClick={()=>{
+					<Button variant='success'  onClick={()=>{
 						sell(input1.current.value,input2.current.value)}} >
 						Sell Robots
 					</Button>
