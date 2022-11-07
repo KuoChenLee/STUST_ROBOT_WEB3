@@ -86,8 +86,8 @@ import {
 			<br />
 			 {/* Mint button 合約 */}
 			 <div className='div6'>
-				<div >
-				<Container className='div10'>
+				<div>
+				<Container className='div17'>
 					<Col>
 						<h1 className='text2'>Mint Blind Box</h1>
 						<h6 className='text2'>

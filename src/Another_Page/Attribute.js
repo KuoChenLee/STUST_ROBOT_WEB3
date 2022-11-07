@@ -2,8 +2,23 @@ import '../App';
 import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure} from 'react-bootstrap';
 import '../Another_Page_Css/Attribute.css';
 import React,{useState} from 'react';
+import p1 from '../image/p2.png';
 
   function Attribute(){
+    // function flop_card(){
+    //   return(
+    //     <div className='card-container'>
+    //         <div className='cover'>
+    //           <img src={p1} alt="Background" className='imgp1'/>
+    //           {/* Cover */}
+    //         </div>
+    //         <div className='back'>
+    //           Back
+    //         </div>
+    //     </div>
+        
+    //   );
+    // }
 
 	return(
 		<div className='div9'>
@@ -12,6 +27,7 @@ import React,{useState} from 'react';
       <br />
       
 			<h1 className='text7'>Attribute</h1>
+      
 			<Container>
 				<Col className='bounce-in-right'>
               <iframe src="https://kuochenlee.github.io/background_5/" width="580" height="650"/>
@@ -119,7 +135,10 @@ import React,{useState} from 'react';
 			  	<br/>
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
-      <div>hello world</div>
+      {/* <div className='body'>
+      {flop_card()}
+      </div> */}
+      
 		</div>
 
 	);

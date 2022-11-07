@@ -7,8 +7,11 @@ import {  ethers } from "ethers";
 import Web3Modal, { PROVIDER_WRAPPER_CLASSNAME } from "web3modal";
 import axios from 'axios';
 import React,{useState,useRef,useEffect} from 'react';
+import box from '../image/1.gif';
 // import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 import contractaddress from'../contractaddress.json';
+import p12 from '../image/p12.png';
+import p1 from '../image/p2.png';
 import ABI from'../contractabi.json';
 import {
 	TransitionGroup,
@@ -80,12 +83,37 @@ function Account(props){
 						{
 							nfts.map((nft, i) => (
                                 
+                                // nft.owner===address?
+                                <Col md={4} className="p-3" >
+                                    <div className="card-container">
+                                        <Card key={i}  className="back">
+											<Card.Img variant='bottom' src={nft.animation_url} className="imgp1"/>
+											<div className='word2'><p>{nft.name}</p></div> 
+                                                <div className='word3'><p>STUST UNIVERSE</p></div>
+											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
+											
+										</Card>
+                                        <Card className='cover'>
+                                            <Card.Img variant='bottom' src={box} className="imgp1"/>
+                                        </Card>
+                                    </div>
+										
+                                        
+                                        </Col>
+                                        // :""
+                                
+								
+							))
+						}
+                        {/* {
+							nfts.map((nft, i) => (
+                                
                                 nft.owner===address?<Col md={4} className="p-3" >
 										<Card key={i} className="card_background">
 											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
 											<div className='word2'><p>{nft.name}</p></div> 
 											<div className='word3'><p>STUST UNIVERSE</p></div> 
-											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
+											<Card.Title className='text8'>{nft.name}</Card.Title>
 											<Card.Body>
 												
 												
@@ -95,7 +123,7 @@ function Account(props){
                                 
 								
 							))
-						}
+						} */}
 						
 						
 					</Row>
@@ -105,23 +133,39 @@ function Account(props){
 				
 					}
     }
-    
+    // function card_display(){
+    //     return(
+    //         <div className='card-container'>
+    //         <div className='cover'>
+    //           <img src={p1} alt="Background" className='imgp1'/>
+    //           {/* Cover */}
+    //         </div>
+    //         <div className='back'>
+    //           Back
+    //         </div>
+    //     </div>
+    //     )
+    // }
     
     function Account_display(){
        
        
         return(
-            <Alert variant='dark' className='text7'>
-                {shortenAddr(address)}
-                <hr/>
-                {(1*balance).toFixed(2)}Ethers
+            <Alert variant='dark' className='text10'>
+                <p className='p1'>
+                    Wellet Account:{shortenAddr(address)}
+                </p>
+                <p>
+                    <img src={p12} alt="Background" className='p12'/>
+                    Balance:{(1*balance).toFixed(2)}Ethers
+                </p>
             </Alert>
         )
        
         
     }
     return (
-        <div className='div15'>
+        <div className='background_color1'>
             <br/>
             <br/>
             <br/><br/>
@@ -131,7 +175,7 @@ function Account(props){
                 
                 {isClick===false?<h1>Connect Your Wallet</h1>:<Account_display/>}
                 </Row>
-                <Row className='div5'>
+                <Row className='div16'>
                     {/* <Router>
                         <Link to="/have">已擁有</Link>
                         <Routes>
@@ -147,7 +191,9 @@ function Account(props){
 			  	<br/>
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
-            
+            {/* <div className='body'>
+            {card_display()}
+            </div> */}
         </div>
     )
 }

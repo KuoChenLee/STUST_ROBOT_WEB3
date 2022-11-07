@@ -2,3 +2,77 @@
     background-color: cadetblue;
 }
 
+.text10{
+    text-align:center;
+    font-family:fantasy;
+    border-radius: 30px;
+}
+.p1{
+    font-size: 50px;
+}
+.p1:hover{
+    font-size: 50px;
+    color: aliceblue;
+}
+.p12{
+    width: 40px;
+}
+.div16{
+    background-image: linear-gradient( 180.5deg,  rgba(46,255,171,1) 12.3%, rgba(252,251,222,0.46) 92% );
+    border-radius: 30px;
+}
+.background_color1{
+    background-image: linear-gradient( 109.6deg,  rgba(255,179,189,1) 1.8%, rgba(254,248,154,1) 50.6%, rgba(161,224,186,1) 100.3% );
+}
+.body{
+    font-size: 22px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica;
+    background-image: linear-gradient( 109.6deg,  rgba(15,2,2,1) 11.2%, rgba(36,163,190,1) 91.1% );
+}
+
+.card-container{
+    
+    width: 350px;
+    height:400px;
+    position: relative;
+    /* 透視效果 */
+    perspective: 1000px;
+}
+.cover, .back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform .25s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border-radius: 30px;
+    box-shadow: 0 .2rem .5rem rgb(0, 0, 0, .18);
+}
+.cover{
+    background-color: #c7619de4;
+    transform: rotateY(0deg);
+}
+
+.card-container:hover .cover {
+    transform: rotateY(180deg);
+}
+.back{
+    background-color: #a3c9f1;
+    transform: rotateY(-180deg);
+}
+.card-container:hover .back {
+    transform: rotateY(0deg);
+}
+.imgp1{
+    border-radius: 30px;
+    width: 350px;
+    height:400px;
+
+} 
