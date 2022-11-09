@@ -47,7 +47,7 @@
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
-    transition: transform .25s ease-in-out;
+    transition: transform 1.25s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,6 +64,8 @@
     transform: rotateY(180deg);
 }
 .back{
+
+
     background-color: #a3c9f1;
     transform: rotateY(-180deg);
 }
@@ -75,4 +77,28 @@
     width: 350px;
     height:400px;
 
-} 
+}
+.imgp2{
+    border-radius: 30px 30px 0 0;
+    width: 350px;
+    height:400px;
+
+}
+
+.imglabal{
+    width: 50px;
+    height: 50px;
+}
+.div18{
+    border-radius: 12px;
+    background-image: linear-gradient( 129.1deg,  rgba(243,199,83,1) 26.8%, rgba(18,235,207,1) 114.1% );
+    font-family: fantasy;
+    font-size: 20px;
+}
+.div19{
+    border-radius: 12px;
+    background-image: linear-gradient( 89.4deg,  rgba(194,0,39,1) 0.8%, rgba(10,35,104,1) 99.4% );
+    font-family: fantasy;
+    font-size: 30px;
+    color:azure
+}

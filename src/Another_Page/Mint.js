@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import '../Another_Page_Css/Mint.css';
 import {  ethers } from "ethers";
 import Web3Modal from "web3modal";
+import box from '../image/0.gif';
 import React,{useState} from 'react';
 import {
 	TransitionGroup,
@@ -81,12 +82,13 @@ import {
   
 	return(
 		<div className='dvi1'>
-			<br />
-			<br />
-			<br />
+			
 			 {/* Mint button 合約 */}
 			 <div className='div6'>
 				<div>
+				<br />
+			<br />
+			<br />
 				<Container className='div17'>
 					<Col>
 						<h1 className='text2'>Mint Blind Box</h1>
@@ -95,7 +97,7 @@ import {
 						</h6>
 					</Col>
 					<Col className='roll-in-top'>
-						<iframe src="https://kuochenlee.github.io/Blind_Box_Picture1/" width="560" height="655"/>
+						<img src={box} width="600" height="650"/>
 					</Col>
 						<select className="list1" id="list">
 						<option class="drop-down">0</option>

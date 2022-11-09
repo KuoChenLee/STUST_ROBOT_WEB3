@@ -5,24 +5,9 @@ import '../Another_Page_Css/Home.css';
 import {  ethers } from "ethers";
 import Web3Modal from "web3modal";
 import React,{useState,useEffect} from 'react';
-
+import pi20 from '../image/20.gif';
+import pi3 from '../image/3.gif';
 function Home(){
-    // const [address,setAddress]=useState('');
-    // const [balance,setBalance]=useState('');
-    // const [contract,setContract]=useState({});
-    // const [ens,setEns]=useState('');
-    // const [isClick,setClick]=useState(false);
-    // const [notisClick,setNotClick]=useState(true);
-    // const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
-    // function myFunction() {
-    //   let elem = document.querySelectorAll(".drop-down");
-    //   elem.forEach(element=>{
-    //       element.addEventListener("click", e =>{
-    //           console.log(e.target.innerHTML);
-    //       });
-    //   })
-    // }
-    // myFunction();
     
     return(
       <div className="App">
@@ -76,7 +61,7 @@ function Home(){
                       </a>
                       <br/>
                       <br/>
-                      <iframe src="https://kuochenlee.github.io/Robot_8/" width="700" height="690"/>
+                      <img src={pi20} width="700" height="690"/>
                 </Alert>
                 </div> 
               
@@ -90,9 +75,10 @@ function Home(){
         <div className='div7'>
           <Container>
           <h1 className='text7'>About</h1>
-            <Row>
+          <div>
+          <Row>
              <Col>
-                <iframe className='fade-in-top' src="https://kuochenlee.github.io/Blind_Box_picture/" width="560" height="660"/>
+                <img className='fade-in-top' src={pi3} width="560" height="600"/>
               </Col>
               <Col>
                 
@@ -101,6 +87,8 @@ function Home(){
                 </p>
               </Col>
             </Row>
+          </div>
+           
           </Container>
         </div>
         {/* FAQ 問題解答查詢 */}
