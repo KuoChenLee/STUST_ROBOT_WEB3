@@ -74,7 +74,7 @@ function Account(props){
 		const handleShow = () => setShow(true);
         return(
             <>
-            <Card.Img variant='bottom' src={box} className="imgp2"/>
+            
 			<Button variant="primary" className='button'  onClick={handleShow}>
             
 			  <span className='text7' onClick={()=>fetchattrubute(tokenId)}>Show Attribute</span>
@@ -135,14 +135,16 @@ function Account(props){
 
             console.log(meta)
             const nft={
-				itemId:parseInt(i.itemId),
-				tokenId:parseInt(i.tokenId),
+                itemId:parseInt(i.itemId),
+                tokenId:parseInt(i.tokenId),
                 owner:i.owner,
                 sell:i.seller,
-				sold:i.sold,
-				animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
-				name: "STUST ROBOTS #"+parseInt(i.tokenId),
-				price:parseInt(i.price)/Math.pow(10,18)
+                sold:i.sold,
+                animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
+                name: "STUST ROBOTS #"+parseInt(i.tokenId),
+                price:parseInt(i.price)/Math.pow(10,18),
+                qrcode:"https://gateway.pinata.cloud/ipfs/QmdnBpYR44iw8F9XMwgVwVVJVRqQ2N4DMJHS4rch9zm24R/"+parseInt(i.tokenId)+".png"
+                
 			}
             console.log(nft)
 			return nft
@@ -176,6 +178,7 @@ function Account(props){
 											
 										</Card>
                                             <Card className='back'>
+                                            <Card.Img variant='bottom' src={nft.qrcode} className="imgp2"/>
                                                 {display_attribute(nft.tokenId)}
                                             </Card>
                                     </div>
