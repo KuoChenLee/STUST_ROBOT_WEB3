@@ -72,7 +72,7 @@ import {
   // 打開盲盒處理
   async function SeeNFT(){
 	// 打開盲盒開關
-    // let flipReveal=await contract.flipReveal();
+    let flipReveal=await contract.flipReveal();
 	// 設定NFT IPFS網址
         let setBaseURI=await contract.setBaseURI(
         "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
@@ -126,6 +126,7 @@ import {
 				</Container>
 				</div>
       		</div>
+
 			{/* 盲盒說明 */}
 			<div className='div3'>
 				<h1>How To Mint Blind Box?</h1>

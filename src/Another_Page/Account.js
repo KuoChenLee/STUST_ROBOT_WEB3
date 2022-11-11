@@ -170,17 +170,17 @@ function Account(props){
                                 <Col md={4} className="p-3" >
                                     <div className="card-container" >
                                     {/* onClick={()=>fetchattrubute(nft.tokenId)} */}
-                                        <Card key={i}  className="cover" >
-											<Card.Img variant='bottom' src={nft.animation_url} className="imgp1"/>
-											<div className='word2'><p>{nft.name}</p></div> 
-                                                <div className='word3'><p>STUST UNIVERSE</p></div>
-											{/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
-											
-										</Card>
-                                            <Card className='back'>
-                                            <Card.Img variant='bottom' src={nft.qrcode} className="imgp2"/>
-                                                {display_attribute(nft.tokenId)}
-                                            </Card>
+                                    <Card key={i}  className="cover" >
+                                    <Card.Img variant='bottom' src={nft.animation_url} className="imgp1"/>
+                                    <div className='word2'><p>{nft.name}</p></div> 
+                                                              <div className='word3'><p>STUST UNIVERSE</p></div>
+                                    {/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
+                                    
+                                  </Card>
+                                    <Card className='back'>
+                                    <Card.Img variant='bottom' src={nft.qrcode} className="imgp2"/>
+                                        {display_attribute(nft.tokenId)}
+                                    </Card>
                                     </div>
                                     
 										
