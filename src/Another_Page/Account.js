@@ -75,7 +75,7 @@ function Account(props){
         return(
             <>
             
-			<Button variant="primary" className='button'  onClick={handleShow}>
+			<Button className='button'  onClick={handleShow}>
             
 			  <span className='text7' onClick={()=>fetchattrubute(tokenId)}>Show Attribute</span>
 			</Button>
@@ -119,31 +119,21 @@ function Account(props){
         )
     }
 
-
+    async function openbox(){
+      let flipReveal=await contract.flipReveal();
+    }
 
 
     async function fetchmyNFT(){
         let fetchMyNFTs=await contract.fetchMyNFTs();
         console.log(fetchMyNFTs)
         const nfts=await Promise.all(fetchMyNFTs.map(async(i)=>{
-            let fetchMyNFTstoken=i.tokenId;
-            console.log(fetchMyNFTstoken)
             
-            let tokenURI=await contract.tokenURI(fetchMyNFTstoken)
-            
-            const meta = await axios.get(tokenURI)
-
-            console.log(meta)
             const nft={
-                itemId:parseInt(i.itemId),
-                tokenId:parseInt(i.tokenId),
-                owner:i.owner,
-                sell:i.seller,
-                sold:i.sold,
-                animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+parseInt(i.tokenId)+".gif", 
-                name: "STUST ROBOTS #"+parseInt(i.tokenId),
-                price:parseInt(i.price)/Math.pow(10,18),
-                qrcode:"https://gateway.pinata.cloud/ipfs/QmdnBpYR44iw8F9XMwgVwVVJVRqQ2N4DMJHS4rch9zm24R/"+parseInt(i.tokenId)+".png"
+                tokenId:i,
+                animation_url:"https://gateway.pinata.cloud/ipfs/QmUaZaTMUD1B1vSmgMjn1qvC2Sb76VnuwrASDQgSkaWc9e/"+i+".gif", 
+                name: "STUST ROBOTS #"+i,
+                qrcode:"https://gateway.pinata.cloud/ipfs/QmdnBpYR44iw8F9XMwgVwVVJVRqQ2N4DMJHS4rch9zm24R/"+i+".png"
                 
 			}
             console.log(nft)
@@ -264,7 +254,11 @@ function Account(props){
 			  	<br/>
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
-            
+    
+
+      
+            {window.address==="0x076F59fd9bADE9e98F5ad66b5d1b25324EB24eD5"?<h1>USERS</h1>:<Button variant='success' onClick={()=>openbox()}>Open Boxes</Button>}
+       
         </div>
     )
 }

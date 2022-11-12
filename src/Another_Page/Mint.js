@@ -65,20 +65,23 @@ import {
 	// let ownerof=await contract.ownerof(2)
 	// console.log(ownerof);
 	//做一個隨機盒子的運算
+	let setBaseURI=await contract.setBaseURI(
+        "https://gateway.pinata.cloud/ipfs/QmPdFoaeFyeA7NjgYRwofowHtG9nwK8MjdnuzdJkoBYf6x/"
+        )
    
   }
   //查看網頁的重新更新
   console.count()
   // 打開盲盒處理
-  async function SeeNFT(){
-	// 打開盲盒開關
-    let flipReveal=await contract.flipReveal();
-	// 設定NFT IPFS網址
-        let setBaseURI=await contract.setBaseURI(
-        "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
-        )
+//   async function SeeNFT(){
+// 	// 打開盲盒開關
+//     let flipReveal=await contract.flipReveal();
+// 	// 設定NFT IPFS網址
+//         let setBaseURI=await contract.setBaseURI(
+//         "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
+//         )
 	
-  }
+//   }
   
 	return(
 		<div className='dvi1'>
@@ -97,7 +100,7 @@ import {
 						</h6>
 					</Col>
 					<Col className='roll-in-top'>
-						<img src={box} width="600" height="650"/>
+						<img src={box} width="600" height="650" className='blindBox'/>
 					</Col>
 						<select className="list1" id="list">
 						<option class="drop-down">0</option>
@@ -109,20 +112,20 @@ import {
 						<Button disabled={notisClick} onClick={()=>mint()} variant={address?"danger":"secondary"} >Mint Blind Box</Button>
                         {/* disabled={notisClick} */}
 					</Col>
-					<Col>
+					{/* <Col>
 						<h1 className='text2'>Open your blind box.🔑</h1>
 						<h6 className='text2'>
 						You can open the blind box.
 						</h6>
-					</Col>
+					</Col> */}
 					<Col>
 					{/* 假如未觸發connect wallet button ，button 不能按 */}
-						<Button disabled={notisClick} onClick={()=>SeeNFT()} variant={address?"dark":"secondary"} >Open Blind Box</Button>
+						{/* <Button disabled={notisClick} onClick={()=>SeeNFT()} variant={address?"dark":"secondary"} >Open Blind Box</Button> */}
                         {/* disabled={notisClick} */}
 					</Col>
-					<Col>
+					{/* <Col>
 						<h6 className='text2'>If you want to see your NFT ,Click <a href='https://testnets.opensea.io/zh-TW'>OpenSea</a></h6>
-					</Col>
+					</Col> */}
 				</Container>
 				</div>
       		</div>

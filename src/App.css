@@ -266,6 +266,15 @@
 .text7{
   font-family:fantasy;
 }
+.STUST{
+  background-image: linear-gradient(to right,#f8f9fa,#212529);
+  width:fit-content
+  ;
+  background-clip: text;
+  font-family:fantasy;
+  -webkit-background-clip: text;
+  color:transparent;
+}
 
 .header{
   width: 50px;
@@ -274,6 +283,14 @@
   background-color: #FFFFFF;
   border-radius: 50%;
 }
+.wallet{
+  width: 70px;
+}
+.wallet:hover{
+  background-color: #FFFFFF;
+  border-radius: 20px;
+}
+
 
 
 

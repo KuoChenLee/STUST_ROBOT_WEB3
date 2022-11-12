@@ -221,13 +221,12 @@ import {
 				<Button variant="secondary" onClick={handleClose}>
 				  Cancel
 				</Button>
-				<Button variant='success' >
 					<Button variant='success'  onClick={()=>{
 						sell(input1.current.value,input2.current.value)}} >
 						Sell Robots
 					</Button>
 					
-				</Button>
+				
 			  </Modal.Footer>
 			</Modal>
 		  </>
@@ -283,8 +282,15 @@ import {
 		<br />
       	<br />
 		<br />
-		<h1 className='text7'>STUST UNIVERSE SHOP</h1>
-			
+		<br />
+      	
+		{/* <h1 className='text7'>STUST UNIVERSE SHOP</h1> */}
+		<div className='word-waves'>
+			<span>STUST UNIVERSE SHOP</span>
+			<span>STUST UNIVERSE SHOP</span>
+		</div>
+		<br />
+		<br />
 			<Row>
 				{/* Maybe 查詢選單? */}
 				
