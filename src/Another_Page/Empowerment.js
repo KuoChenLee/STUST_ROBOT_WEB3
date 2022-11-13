@@ -4,8 +4,9 @@ import Alert from 'react-bootstrap/Alert';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Another_Page_Css/Empowerment.css';
 import React,{useState} from 'react';
-
-
+import vip2 from '../image/VIP_Card2.gif';
+import G15 from '../image/G15.gif';
+import G20 from '../image/G20.gif';
 
 
   function Empowerment(){
@@ -19,7 +20,11 @@ import React,{useState} from 'react';
             <br />
             
             <Alert className='slide-in-top' variant='success'>
-              <h1 className='text7'>Empowerment</h1>
+              <h1 className='text7'>
+                <img className='em' src={G15}/>
+                Empowerment
+                <img className='em' src={G20}/>
+              </h1>
               <hr/>
               <h5 className='text7'>Buying a blind box will give you a chance to get a VIP NFT. The function of VIP NFT</h5> <h5 className='text7'>is to get a 10% discount when purchasing NFT in our Robot Shop,and you can</h5> <h5 className='text7'> also receive airdrops of our new products from time to time.</h5>
               <a href='http://localhost:3000/Mint'>
@@ -27,11 +32,11 @@ import React,{useState} from 'react';
               </a>
             </Alert>  
         </Row>
-				<Row>
-                    <iframe src="https://kuochenlee.github.io/VIP_Card/" width="540" height="680"/>
+				
+                    <img className='vip_card2' src={vip2} alt="background"/>
                     <h6>20% chance to get VIP NFT</h6>
                     
-        </Row>
+        
 			</Container>
       <div className='dive1'>
 			  <br/>

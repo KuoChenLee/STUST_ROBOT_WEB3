@@ -102,4 +102,25 @@
     font-size: 30px;
     color:azure
 }
-
+.img_attribute{
+    width: 500px;
+    height: 400px;
+    border-radius: 50%;
+    
+}
+.img_attribute1{
+    width: 150px;
+    transform: rotate(-30deg);
+}
+.img-left{
+    float: left;
+    text-align: left;
+}
+.img-right{
+    float: right;
+    text-align: right;
+}
+.img_attribute2{
+    width: min-content;
+    transform: rotate(30deg);
+}
