@@ -38,7 +38,7 @@ const web3Modal = new Web3Modal({
 
 
 function App() {
-	const contractAddr="0xa159Ce8EDeA312189A48Dd66d26065851A527B78";
+	const contractAddr="0x2d477128782839234DbF5053a9ddb87a32382fbC";
 	const abi=[
 		{
 			"inputs": [
@@ -1079,7 +1079,7 @@ function App() {
 					<Link className='text1' to="/Attribute"><button className='button1'>Attribute</button></Link>
 					<Link className='text1' to="/Mint"><button className='button1'>Mint</button></Link>
 					<Link className='text1' to='/Empowerment'><button className='button1'>Empowerment</button></Link>
-					<Link className='text1' to="/Robot_Shop"><button className='button1'>Robot_Shop</button></Link>
+					<Link className='text1' to="/Robot_Shop"><button className='button1'>Robot Shop</button></Link>
 				
 					<div>
 						{address&&<span className='me-2' >

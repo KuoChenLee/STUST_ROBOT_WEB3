@@ -50,46 +50,46 @@ import {
 	
 	useEffect(() => { display() }, [])
 	// 賣NFT的function
-	async function sell(input1,input2){
-		setShow(false)
-		settokenID(input1)
-		setSellPrice(input2)
-		console.log(input1)
-		// 輸入tokenID找tokenURI
-		let tokenURI=await contract.tokenURI(tokenID)
-		// console.log(tokenURI)
-		//顯示tokenURI的資料放在jsondata裡
-		let jsondata=await fetch(tokenURI);
-		// console.log(jsondata)
-		//將jsondata用json物件形式解譯
-		let json = await jsondata.json()
-		//將這包物件設到NFTData裡
-		setNFTData(json);
-		//查看json裡的name
-		console.log(json.name)
-		//將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
-		let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
-		// 將NFT_GIF的animation_url更新到json.animation_url裡
-		json.animation_url=NFT_GIF
-		console.log(NFT_GIF)
+	// async function sell(input1,input2){
+	// 	setShow(false)
+	// 	settokenID(input1)
+	// 	setSellPrice(input2)
+	// 	console.log(input1)
+	// 	// 輸入tokenID找tokenURI
+	// 	let tokenURI=await contract.tokenURI(tokenID)
+	// 	// console.log(tokenURI)
+	// 	//顯示tokenURI的資料放在jsondata裡
+	// 	let jsondata=await fetch(tokenURI);
+	// 	// console.log(jsondata)
+	// 	//將jsondata用json物件形式解譯
+	// 	let json = await jsondata.json()
+	// 	//將這包物件設到NFTData裡
+	// 	setNFTData(json);
+	// 	//查看json裡的name
+	// 	console.log(json.name)
+	// 	//將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
+	// 	let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+	// 	// 將NFT_GIF的animation_url更新到json.animation_url裡
+	// 	json.animation_url=NFT_GIF
+	// 	console.log(NFT_GIF)
 
-		console.log(URI)
-		console.log(json)
-		// 將價格用WEI計算
+	// 	console.log(URI)
+	// 	console.log(json)
+	// 	// 將價格用WEI計算
 		
-		let price=sellprice*Math.pow(10,18);
-		// 觸發createMarketplaceItem來賣NFT
+	// 	let price=sellprice*Math.pow(10,18);
+	// 	// 觸發createMarketplaceItem來賣NFT
 		
-		let createMarketplaceItem=await contract.createMarketplaceItem(
-			tokenID,
-			price
-		)
-	}
-	function handleClick() {
-		console.log("test")
-		console.log(input1.current.value);
-		console.log(input2.current.value);
-	}
+	// 	let createMarketplaceItem=await contract.createMarketplaceItem(
+	// 		tokenID,
+	// 		price
+	// 	)
+	// }
+	// function handleClick() {
+	// 	console.log("test")
+	// 	console.log(input1.current.value);
+	// 	console.log(input2.current.value);
+	// }
 	async function display(){
 		
 		const fetchMarketplaceItems=await contract.fetchMarketplaceItems()
@@ -179,59 +179,59 @@ import {
 		
 	}
 	
-	function Example() {
+	// function Example() {
 		
 
 		
 		
-		const handleClose = () => setShow(false);
-		const handleShow = () => setShow(true);
+	// 	const handleClose = () => setShow(false);
+	// 	const handleShow = () => setShow(true);
 	  
-		return (
-		  <>
-			<Button variant="primary" className='button'  onClick={handleShow}>
-			  <span className='text7'>Sell the Robots</span>
-			</Button>
+	// 	return (
+	// 	  <>
+	// 		<Button variant="primary" className='button'  onClick={handleShow}>
+	// 		  <span className='text7'>Sell the Robots</span>
+	// 		</Button>
 	  
-			<Modal
-			  show={show}
-			  onHide={handleClose}
-			  backdrop="static"
-			  keyboard={false}
-			>
-			  <Modal.Header closeButton>
-				<Modal.Title className='text7'>Sell the Robot</Modal.Title>
-			  </Modal.Header>
-			  <Modal.Body>
-			  <input
-					title="STUST ROBOT TokenID"
-					placeholder="STUST ROBOT #?"
-					ref={input1}
-				>
-				</input>
-				<br/>
-				<input
-					title="Sell Price"
-					placeholder="Price"
-					ref={input2}
-				>
-				</input>
-			  </Modal.Body>
-			  <Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
-				  Cancel
-				</Button>
-					<Button variant='success'  onClick={()=>{
-						sell(input1.current.value,input2.current.value)}} >
-						Sell Robots
-					</Button>
+	// 		<Modal
+	// 		  show={show}
+	// 		  onHide={handleClose}
+	// 		  backdrop="static"
+	// 		  keyboard={false}
+	// 		>
+	// 		  <Modal.Header closeButton>
+	// 			<Modal.Title className='text7'>Sell the Robot</Modal.Title>
+	// 		  </Modal.Header>
+	// 		  <Modal.Body>
+	// 		  <input
+	// 				title="STUST ROBOT TokenID"
+	// 				placeholder="STUST ROBOT #?"
+	// 				ref={input1}
+	// 			>
+	// 			</input>
+	// 			<br/>
+	// 			<input
+	// 				title="Sell Price"
+	// 				placeholder="Price"
+	// 				ref={input2}
+	// 			>
+	// 			</input>
+	// 		  </Modal.Body>
+	// 		  <Modal.Footer>
+	// 			<Button variant="secondary" onClick={handleClose}>
+	// 			  Cancel
+	// 			</Button>
+	// 				<Button variant='success'  onClick={()=>{
+	// 					sell(input1.current.value,input2.current.value)}} >
+	// 					Sell Robots
+	// 				</Button>
 					
 				
-			  </Modal.Footer>
-			</Modal>
-		  </>
-		);
-	}
+	// 		  </Modal.Footer>
+	// 		</Modal>
+	// 	  </>
+	// 	);
+	// }
 
 	
 
@@ -286,8 +286,8 @@ import {
       	
 		{/* <h1 className='text7'>STUST UNIVERSE SHOP</h1> */}
 		<div className='word-waves'>
-			<span>STUST UNIVERSE SHOP</span>
-			<span>STUST UNIVERSE SHOP</span>
+			<span>STUST ROBOTS SHOP</span>
+			<span>STUST ROBOTS SHOP</span>
 		</div>
 		<br />
 		<br />
@@ -313,7 +313,7 @@ import {
 				</input>
 					<Button variant='success' onClick={()=>sell()}>Sell Robots</Button> */}
 						 
-						<Example/>
+						{/* <Example/> */}
 						<Container>
 							{(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:showNFT()}
 						</Container>

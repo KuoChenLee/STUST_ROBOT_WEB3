@@ -57,31 +57,22 @@ import {
     let response=await tx.wait();
     console.log(response);
 	// 設定盲盒的IPFS json檔網址
-	let setNotRevealedURI=await contract.setNotRevealedURI(
-				"https://gateway.pinata.cloud/ipfs/QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
-	);
+	// let setNotRevealedURI=await contract.setNotRevealedURI(
+	// 			"https://gateway.pinata.cloud/ipfs/QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
+	// );
 	// let tokenURI=await contract.tokenURI(2)
 	// console.log(tokenURI);
 	// let ownerof=await contract.ownerof(2)
 	// console.log(ownerof);
 	//做一個隨機盒子的運算
-	let setBaseURI=await contract.setBaseURI(
-        "https://gateway.pinata.cloud/ipfs/QmPdFoaeFyeA7NjgYRwofowHtG9nwK8MjdnuzdJkoBYf6x/"
-        )
+	// let setBaseURI=await contract.setBaseURI(
+    //     "https://gateway.pinata.cloud/ipfs/QmPdFoaeFyeA7NjgYRwofowHtG9nwK8MjdnuzdJkoBYf6x/"
+    //     )
    
   }
   //查看網頁的重新更新
   console.count()
-  // 打開盲盒處理
-//   async function SeeNFT(){
-// 	// 打開盲盒開關
-//     let flipReveal=await contract.flipReveal();
-// 	// 設定NFT IPFS網址
-//         let setBaseURI=await contract.setBaseURI(
-//         "https://gateway.pinata.cloud/ipfs/QmYgCen5PzYdjuVezQCXasvb998wdTrn9o586ZCLSN7oML/"
-//         )
-	
-//   }
+ 
   
 	return(
 		<div className='dvi1'>
@@ -102,15 +93,24 @@ import {
 					<Col className='roll-in-top'>
 						<img src={box} width="600" height="650" className='blindBox'/>
 					</Col>
-						<select className="list1" id="list">
+						{/* <select className="list1" id="list">
 						<option class="drop-down">0</option>
 						<option class="drop-down" selected="selected">1</option>
 						<option class="drop-down">2</option>
-						</select>
+						</select> */}
 					<Col>
+					<br/>
+						
 					{/* 假如未觸發connect wallet button ，button 不能按 */}
-						<Button disabled={notisClick} onClick={()=>mint()} variant={address?"danger":"secondary"} >Mint Blind Box</Button>
+						{/* <Button disabled={notisClick} onClick={()=>mint()} variant={address?"danger":"secondary"} >Mint Blind Box</Button> */}
                         {/* disabled={notisClick} */}
+						<button className={address?'mintbutton':'mintbutton1'} disabled={notisClick} onClick={()=>mint()}>
+							<span>
+							Mint Blind Box
+							</span>
+						</button>
+						<br/>
+						<br/>
 					</Col>
 					{/* <Col>
 						<h1 className='text2'>Open your blind box.🔑</h1>
@@ -126,6 +126,7 @@ import {
 					{/* <Col>
 						<h6 className='text2'>If you want to see your NFT ,Click <a href='https://testnets.opensea.io/zh-TW'>OpenSea</a></h6>
 					</Col> */}
+					
 				</Container>
 				</div>
       		</div>
@@ -134,18 +135,26 @@ import {
 			<div className='div3'>
 				<h1>How To Mint Blind Box?</h1>
 				<Row>
-					<h4 className='text2'>You need to Click <img src={require('../image/p3.png')} alt="Background"/> ➜ <img src={require('../image/p4.png')} alt="Background"/>
+					<h4 className='mint-text'>1.You need to Click <img src={require('../image/p3.png')} alt="Background"/> ➜ <img src={require('../image/p4.png')} alt="Background"/>
 					<br/>
-					You can see <img className='img1' src={require('../image/p5.png')} alt="Background"/> this two button open.
-					<br/>CLick the red Button.You can see <img className='img2' src={require('../image/p6.png')} alt="Background"/>.Click confirm and wait a minute.
+					2.You can see <img className='img1' src={require('../image/p5.png')} alt="Background"/> this two button open.
+					<br/>3.CLick the red Button.You can see <img className='img2' src={require('../image/p6.png')} alt="Background"/>.
+					<br/>Click confirm and wait a minute.
 					<br/>
-					You can go to opensea to see did you receive the Blind Box.If you recieve the Blin Box like this <img className='img3' src={require('../image/p7.png')} alt="Background"/>
 					<br/>
-					You can open the Blind Box.Click this <img  src={require('../image/p8.png')} alt="Background"/>.Wait a minute .And Reorganize OpenSea .
+					4.You can go to opensea to see did you receive the Blind Box.
 					<br/>
-					You can see what Robot you get.Like this <img  className='img3' src={require('../image/p9.png')} alt="Background"/>
+					<br/>If you recieve the Blin Box like this <img className='img3' src={require('../image/p7.png')} alt="Background"/>
 					<br/>
-					And check your Attribute. <img className='img3' src={require('../image/p10.png')}alt="Background"/>
+					<br/>
+					5.You can open the Blind Box.Click this <img  src={require('../image/p8.png')} alt="Background"/>.
+					<br/>Wait a minute .And Reorganize OpenSea .
+					<br/>
+					<br/>
+					6.You can see what Robot you get.Like this <img  className='img3' src={require('../image/p9.png')} alt="Background"/>
+					<br/>
+					<br/>
+					7.And check your Attribute. <img className='img3' src={require('../image/p10.png')}alt="Background"/>
 					</h4>
 				</Row>
 			</div>

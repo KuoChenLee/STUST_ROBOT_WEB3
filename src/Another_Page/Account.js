@@ -37,6 +37,9 @@ import Attribute from './Attribute';
   });
 
 function Account(props){
+    const [tokenID,settokenID]=useState([]);
+    const [sellprice,setSellPrice]=useState();
+    const input1 = useRef(1)
     const [show, setShow] = useState(false);
     const [Attributes,setAttributes]=useState([]);
     const [isClick,setClick]=useState(props.isClick);
@@ -46,6 +49,8 @@ function Account(props){
     const [balance,setBalance]=useState(props.balance);
     const [contract,setContract]=useState(props.contract);
     const shortenAddr=address=>address.slice(0,4)+"..."+address.slice(-4);
+    const [nftdata,setNFTData]=useState();
+	  const [URI,setURI]=useState([]);
     useEffect(() => { fetchmyNFT() }, [])
     useEffect(() => { fetchattrubute() }, [])
    
@@ -170,6 +175,8 @@ function Account(props){
                                     <Card className='back'>
                                     <Card.Img variant='bottom' src={nft.qrcode} className="imgp2"/>
                                         {display_attribute(nft.tokenId)}
+                                        {/* <Button variant='danger' onClick={()=>sell(nft.tokenId)}>sell</Button> */}
+                                        {sellmytoken(nft.tokenId)}
                                     </Card>
                                     </div>
                                     
@@ -210,7 +217,79 @@ function Account(props){
 				
 					}
     }
-   
+   async function sell(input1,token){
+    
+      console.log(input1);
+      console.log(token);
+      setShow(false)
+      settokenID(token)
+      setSellPrice(input1)
+      console.log(token)
+      // 輸入tokenID找tokenURI
+      let tokenURI=await contract.tokenURI(tokenID)
+      // console.log(tokenURI)
+      //顯示tokenURI的資料放在jsondata裡
+      let jsondata=await fetch(tokenURI);
+      // console.log(jsondata)
+      //將jsondata用json物件形式解譯
+      let json = await jsondata.json()
+      //將這包物件設到NFTData裡
+      setNFTData(json);
+      //查看json裡的name
+      console.log(json.name)
+      //將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
+      let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+      // 將NFT_GIF的animation_url更新到json.animation_url裡
+      json.animation_url=NFT_GIF
+      console.log(NFT_GIF)
+
+      console.log(URI)
+      console.log(json)
+      // 將價格用WEI計算
+      
+      let price=sellprice*Math.pow(10,18);
+      // 觸發createMarketplaceItem來賣NFT
+      
+      let createMarketplaceItem=await contract.createMarketplaceItem(
+        tokenID,
+        price
+      )
+   }
+   function sellmytoken(token){
+    // const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    console.log(token)
+    return (
+      <>
+        {/* <button className='sellbtn' onClick={handleShow}>
+          <span>Sell</span>
+        </button> */}
+  
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Sell STUST ROBOT</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <input
+              title="Sell Price"
+              placeholder="Price"
+              ref={input1}
+            >
+            </input>
+          </Modal.Body>
+          <Modal.Footer>
+            {/* <Button variant="secondary" onClick={handleClose}>
+              Cancel
+            </Button> */}
+            <Button variant="primary" onClick={()=>{sell(input1.current.value,token)} } >
+            Sell Robots
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+   }
     
     function Account_display(){
        
@@ -257,7 +336,7 @@ function Account(props){
     
 
       
-            {window.address==="0x076F59fd9bADE9e98F5ad66b5d1b25324EB24eD5"?<h1>USERS</h1>:<Button variant='success' onClick={()=>openbox()}>Open Boxes</Button>}
+            {/* {window.address==="0x076F59fd9bADE9e98F5ad66b5d1b25324EB24eD5"?<h1>USERS</h1>:<Button variant='success' onClick={()=>openbox()}>Open Boxes</Button>} */}
        
         </div>
     )

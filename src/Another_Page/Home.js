@@ -7,34 +7,37 @@ import Web3Modal from "web3modal";
 import React,{useState,useEffect} from 'react';
 import pi20 from '../image/20.gif';
 import pi3 from '../image/3.gif';
+import G7 from '../image/G7.gif';
+import G12 from '../image/G12.gif';
+import G15 from '../image/G15.gif';
+import G20 from '../image/G20.gif';
 function Home(){
     
     return(
       <div className="App">
         {/* 動態圖展示 */}
-        <div className='div2'>
-          <Carousel fade>
-              <Carousel.Item>
-                <iframe src="https://kuochenlee.github.io/background_1/" width="2200" height="720"></iframe>
-              <Carousel.Caption>     
-              <h3 className='text1'>STUST ROBOTS MINT </h3>
-              <p className='text1'>You can mint a NFT for 0.003 Ethers</p>
-              </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <iframe  src="https://kuochenlee.github.io/background_9/" width="2200" height="720"></iframe>
-              
-              <Carousel.Caption>
-                <h3 className='text1'>DEFFERENT ATTRUBUTE</h3>
-                <p className='text1'>You can get defferent attribute NFT.</p>
-              </Carousel.Caption>
-              </Carousel.Item>
-              
-              </Carousel>
+        <div className='Home_background'>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          
+          
+          
+          <img className='Home_G7' src={G7}/>
+          <img className='Home_G12' src={G12}/>
+          <img className='Home_G15' src={G15}/>
+          
+          
+          <img className='Home_G20' src={G20}/>
+          <h1><span  className='Home_h1'>STUST </span><span className='Home_h3'>NFT</span><br/> <span className='Home_h2'>Universe</span> </h1>
+          <a href='http://localhost:3000/Robot_Shop'><button className='Home_button'>Go to Robots Shop</button></a>
+          <br/>
+          <br/>
         </div>
         {/* How to get Robots? 相關內容 */}
         <div className='Get_Robots_div_background'>
-          <Container className='scale-in-top'>
+          <Container>
             
           <h1 className='text2'>How to get Robots?</h1>
               <div className="alert1">
@@ -78,106 +81,109 @@ function Home(){
           </Container>
         </div>
         {/* About 相關內容 */}
-        <div className='div7'>
           <Alert className='alert_background'>
           <h1 className='About_h1'>About</h1>
           <img className='About_img' src={pi3} />
-          
+          <br/>
+          <br/>
+          <br/>
                 <p className='About_words'>
-                Yan Youxian pointed out that since the 4th, the Chinese Navy has maintained 13 combat ships,<br/>
-                intelligence search ships, etc. 24 nautical miles away from my country's adjoining area every<br/>
-                day; The J-11, J-16, and supply aircraft, such as the Air Police 500 and other series of aircraft,<br/>
-                have implemented multi-ship and multi-model deterrence in the Taiwan Strait.Lieutenant General Ye<br/>
-                Guohui, Deputy Chief of the Planning Office of the Ministry of National Defense, further explained<br/>
-                that in terms of the actions of the communist army, the communist army announced the opening of<br/>
-                6 no-navigation areas on 8/2, adding a 7th location on 8/3, launching missiles on 8/4, and launching<br/>
-                missiles on 8/4- On 8/7, joint military operations and drones harassed our outer islands; for the<br/> 
-                national army, 8/2 dispatched troops to deal with the communist army, 8/3 enhanced alertness,<br/>
-                8/4 completed air defense units, 8/4-8 /7 Dispatched aircraft and ships should respond and use<br/>
-                post-bomb warnings, and combat readiness troops should be on alert.
+                The NFTs designed by this platform have value, and each NFT <br/>
+                has special attributes. This platform is specially built for  <br/>
+                students, hoping to teach students how to achieve meta-transactions, <br/>
+                and can also sell their own minted NFTs (limited to the NFTs mintedon <br/>
+                this platform) on this platform NFT platform, learning in advance for <br/>
+                the upcomingWeb3 network era. This platform only charges minting fees <br/>
+                , and does not charge additionaltransaction fees
                 </p>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
           </Alert>
-          {/* <Container>
-          <h1 className='text7'>About</h1>
-          <div>
-          <Row>
-               
-            </Row>
-            <Row>
-            <div className='div12'>
-                <p className='text7'>
-                Yan Youxian pointed out that since the 4th, the Chinese Navy has maintained 13 combat ships, intelligence search ships, etc. 24 nautical miles away from my country's adjoining area every day; The J-11, J-16, and supply aircraft, such as the Air Police 500 and other series of aircraft, have implemented multi-ship and multi-model deterrence in the Taiwan Strait.Lieutenant General Ye Guohui, Deputy Chief of the Planning Office of the Ministry of National Defense, further explained that in terms of the actions of the communist army, the communist army announced the opening of 6 no-navigation areas on 8/2, adding a 7th location on 8/3, launching missiles on 8/4, and launching missiles on 8/4- On 8/7, joint military operations and drones harassed our outer islands; for the national army, 8/2 dispatched troops to deal with the communist army, 8/3 enhanced alertness, 8/4 completed air defense units, 8/4-8 /7 Dispatched aircraft and ships should respond and use post-bomb warnings, and combat readiness troops should be on alert.
-                </p>
-                </div>
-            </Row>
-          </div>
-           
-          </Container> */}
-        </div>
+          
+        
         {/* FAQ 問題解答查詢 */}
         <div className='FQA_background'>
           <Alert className='FQA_background'>
           <h1 className='text7'>Frequently Asked Questions</h1>
           
-          <h2 className='text1'>What are Robotos?</h2>
+          <h2 className='text1'>What is STUST NFT Universe?</h2>
           <br/>
           <p className='FQA_words'>
-            Robotos is a collection of algorithmically generated droid characters designed by Pablo Stanley and<br/>
-            minted as NFTs on the Ethereum blockchain. The 1st generation of 10,000 droids will be constructed <br/>
-            from various metal outfits, tin faces, digital accessories, top pieces, faces, backpacks, arms, and <br/>
-            colors. Robotos have different body types, some rarer than others, and... there are rumors that you <br/>
-            could find humans pretending to be robots too. Is it true? 🤔
+          STUST NFT Universe is an NFT Web3 platform that can be used<br/>
+          by students and teachers of Nantai University of Scienc and<br/>
+          Technology, and the minted NFT can be used as the identity <br/>
+          authentication of Nantai teachers and students.
           </p>
           
 
                
-          <h2 className='text1'>What are Robotos?</h2>
+          <h2 className='text1'>What are STUST ROBOTS?</h2>
           <br/>
           <p className='FQA_words'>
-            Robotos is a collection of algorithmically generated droid characters designed by Pablo Stanley and<br/>
-            minted as NFTs on the Ethereum blockchain. The 1st generation of 10,000 droids will be constructed <br/>
-            from various metal outfits, tin faces, digital accessories, top pieces, faces, backpacks, arms, and <br/>
-            colors. Robotos have different body types, some rarer than others, and... there are rumors that you <br/>
-            could find humans pretending to be robots too. Is it true? 🤔
+          STUST ROBOTS is an NFT minted in the STUST NFT Universe, <br/>
+          each NFT has unique properties, and since it is made with<br/>
+           generative art, each has a special value.
           </p>
               
 
              
-          <h2 className='text1'>What are Robotos?</h2>
+          <h2 className='text1'>What do I get?</h2>
           <br/>
           <p className='FQA_words'>
-            Robotos is a collection of algorithmically generated droid characters designed by Pablo Stanley and<br/>
-            minted as NFTs on the Ethereum blockchain. The 1st generation of 10,000 droids will be constructed <br/>
-            from various metal outfits, tin faces, digital accessories, top pieces, faces, backpacks, arms, and <br/>
-            colors. Robotos have different body types, some rarer than others, and... there are rumors that you <br/>
-            could find humans pretending to be robots too. Is it true? 🤔
+          You can get special discounts from school affiliate merchants,<br/>
+           up to 10% off, and can be used as identity verification as <br/>
+           proof of our students.
           </p>
           
 
              
-          <h2 className='text1'>What are Robotos?</h2>
+          <h2 className='text1'>How do I get my STUST Robots?</h2>
           <br/>
           <p className='FQA_words'>
-            Robotos is a collection of algorithmically generated droid characters designed by Pablo Stanley and<br/>
-            minted as NFTs on the Ethereum blockchain. The 1st generation of 10,000 droids will be constructed <br/>
-            from various metal outfits, tin faces, digital accessories, top pieces, faces, backpacks, arms, and <br/>
-            colors. Robotos have different body types, some rarer than others, and... there are rumors that you <br/>
-            could find humans pretending to be robots too. Is it true? 🤔
+          You can view the STUST ROBOTS you have received by visiting<br/>
+           the avatar, and you can view the attributes of the NFT you <br/>
+           have received, and you can also put the NFT you have received<br/>
+            on the platform for sale
           </p>
            
 
              
-          <h2 className='text1'>What are Robotos?</h2>
+          <h2 className='text1'>What is an NFT?</h2>
           <br/>
           <p className='FQA_words'>
-            Robotos is a collection of algorithmically generated droid characters designed by Pablo Stanley and<br/>
-            minted as NFTs on the Ethereum blockchain. The 1st generation of 10,000 droids will be constructed <br/>
-            from various metal outfits, tin faces, digital accessories, top pieces, faces, backpacks, arms, and <br/>
-            colors. Robotos have different body types, some rarer than others, and... there are rumors that you <br/>
-            could find humans pretending to be robots too. Is it true? 🤔
+          NFT stands for "Non-fungible token," which means that it's a<br/>
+           unique, digital item with blockchain-managed ownership that<br/>
+            users can buy, own, and trade. Some NFT's fundamental function<br/>
+             is to be digital art. But they can also offer additional <br/>
+             benefits like exclusive access to websites, event tickets,<br/>
+              game items, and ownership records for physical objects. <br/>
+              Think of it as a unique piece of art that can also work as<br/>
+               a "members-only" card. Robotos works like this.<br/>
+          </p>
+
+          <h2 className='text1'>How do I NFT?</h2>
+          <br/>
+          <p className='FQA_words'>
+          New to NFTs? No worries, here are some steps on what you need to <br/>
+          do to get your Roboto.<br/>
+
+          Download the metamask.io extension for the Chrome/Brave browser or app<br/>
+           on mobile. This will allow you to make purchases with Ethereum and<br/>
+          can be found in the extensions tab. <br/>
+          If you are on mobile, you must use the Metamask App Browser<br/>
+          You can purchase Ethereum through the Metamask Wallet using <br/>
+          Wyre or Send Ethereum from an exchange like Coinbase.<br/>
+          Click on Connect at the top of the page and connect your Metamask.<br/>
+           Once joined, you will be able to purchase the NFTs in the mint section. <br/>
+            You will be prompted to sign your transaction. FYI, there will be a<br/>
+             fee associated with every transaction related to gas prices.<br/>
+          Once you have made your purchase, your Roboto NFTs will be viewable<br/>
+           in your wallet and on OpenSea.
           </p>
           </Alert>
-          
+         
                  
         </div>
         {/* 此網頁客服Email twitter DC */}

@@ -6,16 +6,17 @@
     height: 720px;
 }
 .div3{
-    background-color:#9d4edd;
+    background-image: linear-gradient( 135.9deg,  rgba(109,25,252,1) 16.4%, rgba(125,31,165,1) 56.1% );
 }
 .div6{
-    background-color:#21e4c4;
+    background-image: linear-gradient( 89.8deg,  rgba(204,156,223,1) 0.3%, rgba(155,219,245,1) 20.4%, rgba(245,183,208,1) 40.2%, rgba(250,186,98,1) 62.9%, rgba(234,238,240,1) 81.9%, rgba(250,245,171,1) 99.2% );
     height: 1010px;
     
 }
-.text2{
+.mint-text{
     color: #ffffff;
-    font-family:fantasy;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 1.5rem;
 }
 .img1{
     width: 250px;
@@ -79,3 +80,25 @@
  .blindBox{
     border-radius: 20px;
  }
+.mintbutton{
+    background-image: linear-gradient( 177.8deg,  rgba(255,128,0,1) 9.2%, rgba(232,211,59,1) 86.8% );
+    font-size: large;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    font-family: fantasy;
+}
+.mintbutton:hover{
+    color: #ffffff;
+    background-image: linear-gradient( 181deg,  rgba(225,109,245,1) 6.9%, rgba(78,248,231,1) 112.8% );
+}
+.mintbutton1{
+    font-size: large;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    font-family: fantasy;
+    color: #6b6a6a;
+    background-image: linear-gradient( 110.3deg,  rgba(73,93,109,1) 4.3%, rgba(49,55,82,1) 96.7% );
+}
+

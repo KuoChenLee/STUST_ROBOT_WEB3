@@ -124,3 +124,12 @@
     width: min-content;
     transform: rotate(30deg);
 }
+
+.sellbtn{
+    background-color: #ffbe0b;
+    border-radius: 20px;
+    font-family: fantasy;
+}
+.sellbtn:hover{
+    display: block;
+}
