@@ -31,17 +31,19 @@
 .Home_button{
   border-radius: 12px;
   font-size: 3rem;
-  border-color:#f9c80e;
+  border-color:#333;
+  border-width: 0.5rem;
+  -webkit-transition: all .5s;
   font-family:fantasy;
   background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,229,168,1) 0%, rgba(251,174,222,1) 100.7% );
   position: absolute;
   top: 500px;
   left:800px;
   box-shadow: 0.2em 0.2em #333;
+
 }
 .Home_button:hover{
   color: #FFFFFF;
-  border-color:#ca0ef9;
   background-image: linear-gradient( 109.6deg,  rgba(121,203,202,1) 11.2%, rgba(119,161,211,1) 91.1% );
   position: absolute;
   top: 490px;
@@ -53,7 +55,7 @@
   font-size: 350px;
   color: #FFFFFF;
   font-weight:bold;
-  text-shadow: 0.1em 0.1em #333;
+  text-shadow: 0.05em 0.05em #333533;
 }
 .Home_h1:hover{
   font-family: fantasy;
@@ -66,7 +68,7 @@
   font-size: 350px;
   color: #FFFFFF;
   font-weight: bold;
-  text-shadow: 0.1em 0.1em #333
+  text-shadow: 0.05em 0.05em #333533
 }
 .Home_h2:hover{
   font-family: fantasy;
@@ -79,7 +81,7 @@
   font-size: 350px;
   color: #FFFFFF;
   font-weight: bold;
-  text-shadow: 0.1em 0.1em #333
+  text-shadow: 0.05em 0.05em #333533
 }
 .Home_h3:hover{
   font-family: fantasy;

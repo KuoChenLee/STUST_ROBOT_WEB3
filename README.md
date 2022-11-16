@@ -73,6 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### 1.先`git clone 'https://github.com/KuoChenLee/STUST_ROBOT_WEB3.git'`檔案或是下載ZIP檔
     git clone 'https://github.com/KuoChenLee/STUST_ROBOT_WEB3.git'
+### 2.檢查是否下載node.js，如果無下載，請安裝，檢查是否有安裝`node --version`
 ### 2.再`npm install`下載Library
     npm install
 ### 3.假設沒有任何問題，先`cd (clone的檔案位置)`，再`npm start`
@@ -85,8 +86,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 #### 3.NFT賣在平台陳列在前端        完成
 #### 4.NFT買完消失      完成
 
-### 2.查看自己的錢包內是否有NFT      未完成
+### 2.查看自己的錢包內是否有NFT      完成
 
-### 3.合約開發      未完成
-#### 1.fliprevealed 功能應完善
-#### 2.賦能NFT空頭      未完成
+### 3.合約開發      完成
+#### 1.fliprevealed 功能應完善 -> 更改成項目方控制
+#### 2.賦能NFT空頭      未完成 -> 更改成未來項目
