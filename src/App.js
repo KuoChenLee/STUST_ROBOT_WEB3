@@ -38,7 +38,7 @@ const web3Modal = new Web3Modal({
 
 
 function App() {
-	const contractAddr="0x2d477128782839234DbF5053a9ddb87a32382fbC";
+	const contractAddr="0x20617e7DF29f9873792743a760cf2A02cEbd06d3";
 	const abi=[
 		{
 			"inputs": [
