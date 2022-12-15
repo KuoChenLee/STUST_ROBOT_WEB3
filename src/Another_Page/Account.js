@@ -162,15 +162,15 @@ function Account(props){
 						{
 							nfts.map((nft, i) => (
                                 
-                                
+                                // nft.owner===address?
                                 <Col md={4} className="p-3" >
                                     <div className="card-container" >
-                                    
+                                    {/* onClick={()=>fetchattrubute(nft.tokenId)} */}
                                     <Card key={i}  className="cover" >
                                     <Card.Img variant='bottom' src={nft.animation_url} className="imgp1"/>
                                     <div className='word2'><p>{nft.name}</p></div> 
                                                               <div className='word3'><p>STUST UNIVERSE</p></div>
-                                    
+                                    {/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
                                     
                                   </Card>
                                     <Card className='back'>
@@ -190,7 +190,7 @@ function Account(props){
 							))
 						}
                         
-                        
+            
 						
 						
 					</Row>
@@ -260,8 +260,7 @@ function Account(props){
             </input>
           </Modal.Body>
           <Modal.Footer>
-           
-            <Button variant="success" onClick={()=>{sell(input1.current.value,token)} } >
+            <Button variant="primary" onClick={()=>{sell(input1.current.value,token)} } >
             Sell Robots
             </Button>
           </Modal.Footer>
@@ -302,7 +301,6 @@ function Account(props){
                 
                 {isClick===false?<h1>Connect Your Wallet</h1>:<Account_display/>}
                 </Row>
-                {/* <Button onClick={()=>blind_box()}>reveals</Button> */}
                 <Row className='div16'>
                    
                     {(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:showMyNFTs()}
@@ -314,10 +312,7 @@ function Account(props){
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
     
-
-      
-           
-       
+ 
         </div>
     )
 }
