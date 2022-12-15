@@ -1,5 +1,5 @@
 import './App.css';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure} from 'react-bootstrap';
+import {Button,Container,Navbar} from 'react-bootstrap';
 // import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {  ethers } from "ethers";
@@ -11,34 +11,27 @@ import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	Link,
-	Navigate,
-	useLocation,
-	useParams
+	Link
   } from "react-router-dom";
 import Home from './Another_Page/Home.js';
 import Attribute from './Another_Page/Attribute.js';
 import Mint from './Another_Page/Mint.js';
-import Empowerment from './Another_Page/Empowerment.js';
+// import Empowerment from './Another_Page/Empowerment.js';
 import Robot_Shop from './Another_Page/Robot_Shop.js';
 import Account from './Another_Page/Account.js';
-// import contractaddress from'../src/contractaddress.json';
-// import ABI from'../src/contractabi.json';
-import contractaddress from './contractaddress.json';
-import ABI from './contractabi.json';
-import Fet from './Another_Page/Robot_Shop.js';
+// import contractAddress from './contractaddress.json';
+// import ABIKey from './contractabi.json';
 const web3Modal = new Web3Modal({
   network: "Goerli", // testnet
   providerOptions: {} 
 });
   
 
-// export const contractAddr=contractaddress.contractaddr;
-// export const abi=ABI.abi;
+
 
 
 function App() {
-	const contractAddr="0x20617e7DF29f9873792743a760cf2A02cEbd06d3";
+	const contractAddr="0x8f54975e0f8e24d984b7CA839c607282da5cBA44";
 	const abi=[
 		{
 			"inputs": [
@@ -1015,6 +1008,7 @@ function App() {
 			"type": "function"
 		}
 	];
+	const [box,setBox]=useState();
   const [currentAccount,setCurrentAccount]=useState('');
   const [address,setAddress]=useState('');
   const [balance,setBalance]=useState('');
@@ -1064,7 +1058,11 @@ function App() {
       setNotClick((notisClick)=>!notisClick);
       console.log(notisClick);
     }
-	
+	async function reveals(){
+        let _revealed=await contract._revealed();
+        console.log(_revealed)
+        setBox(_revealed)
+    }
  
   return (
     <div className="App">
@@ -1078,7 +1076,7 @@ function App() {
 					<Link className='text1' to="/Home" ><button className='button1'>Home</button></Link>
 					<Link className='text1' to="/Attribute"><button className='button1'>Attribute</button></Link>
 					<Link className='text1' to="/Mint"><button className='button1'>Mint</button></Link>
-					<Link className='text1' to='/Empowerment'><button className='button1'>Empowerment</button></Link>
+					{/* <Link className='text1' to='/Empowerment'><button className='button1'>Empowerment</button></Link> */}
 					<Link className='text1' to="/Robot_Shop"><button className='button1'>Robot Shop</button></Link>
 				
 					<div>
@@ -1091,15 +1089,9 @@ function App() {
 							address?<Button variant='success' disabled={isClick}>{ens||shortenAddr(address)}</Button>:<img src={wal} alt="background" className="wallet"/>
 						}
 						</div>
-						{/* {
-							
-							address?<Button variant='success' onClick={()=>{init()}}  disabled={isClick}>{ens||shortenAddr(address)}</Button>:<img src={wal} alt="background" className="header"/>
-						} */}
-						{/* <Button variant={address?'success':'outline-secondary'} onClick={()=>{init()}} disabled={isClick}>
-						{address?(ens||shortenAddr(address)):'Connect Wallet'}
-						</Button> */}
+						
 					</div>
-					<Link className='text1' to="/account"><img className='header' src={background} alt="background"/></Link>
+					<Link className='text1' to="/account" onClick={()=>reveals()}><img className='header' src={background} alt="background"/></Link>
 					</Container>
 
 			</Navbar>
@@ -1110,9 +1102,9 @@ function App() {
 					<Route exact path="*"  element={<Home/>}/>
 					<Route path="/Attribute" element={<Attribute/>} />
 					<Route path="/Mint" element={<Mint contract={contract} address={address} notisClick={notisClick} isClick={isClick} contractAddr={contractAddr} abi={abi}/>} />
-					<Route path="/Empowerment" element={<Empowerment/>} />
+					{/* <Route path="/Empowerment" element={<Empowerment/>} /> */}
 					<Route path="/Robot_Shop" element={<Robot_Shop contract={contract} address={address} notisClick={notisClick} isClick={isClick}/>} />
-					<Route path="/Account" element={<Account address={address} contract={contract}  contractAddr={contractAddr} abi={abi} balance={balance} isClick={isClick}/>}/>
+					<Route path="/Account" element={<Account address={address} contract={contract}  contractAddr={contractAddr} abi={abi} balance={balance} isClick={isClick} box={box}/>}/>
 				</Routes>
 		</Router>
       </div>

@@ -133,3 +133,7 @@
 .sellbtn:hover{
     display: block;
 }
+
+.card_box{
+    border-radius: 30px;
+}

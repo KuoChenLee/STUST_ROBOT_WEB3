@@ -90,4 +90,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### 3.合約開發      完成
 #### 1.fliprevealed 功能應完善 -> 更改成項目方控制
-#### 2.賦能NFT空頭      未完成 -> 更改成未來項目

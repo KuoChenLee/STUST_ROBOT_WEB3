@@ -1,10 +1,10 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure} from 'react-bootstrap';
+import {Button,Container,Row} from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import '../Another_Page_Css/Home.css';
-import {  ethers } from "ethers";
-import Web3Modal from "web3modal";
-import React,{useState,useEffect} from 'react';
+// import {  ethers } from "ethers";
+// import Web3Modal from "web3modal";
+import React from 'react';
 import pi20 from '../image/20.gif';
 import pi3 from '../image/3.gif';
 import G7 from '../image/G7.gif';
@@ -192,8 +192,7 @@ function Home(){
             <Row>
             <h6 className='text2'>
               DM us on Twitter or email hello@stickmentoys.com if you want to get in touch - we can't promise a reply to all messages but we see you, we hear you.
-              DM us on Twitter or email hello@stickmentoys.com if you want to get in touch - we can't promise a reply to all messages but we see you, we hear you.
-              DM us on Twitter or email hello@stickmentoys.com if you want to get in touch - we can't promise a reply to all messages but we see you, we hear you.
+             
             </h6>
             </Row>
           </Container>

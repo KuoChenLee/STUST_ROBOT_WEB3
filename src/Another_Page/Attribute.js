@@ -1,25 +1,12 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure} from 'react-bootstrap';
+import {Container,Row,Col,Table,} from 'react-bootstrap';
 import '../Another_Page_Css/Attribute.css';
-import React,{useState} from 'react';
+import React from 'react';
 import p8 from '../image/8.gif';
 import G7 from '../image/G7.gif';
 import G12 from '../image/G12.gif';
   function Attribute(){
-    // function flop_card(){
-    //   return(
-    //     <div className='card-container'>
-    //         <div className='cover'>
-    //           <img src={p1} alt="Background" className='imgp1'/>
-    //           {/* Cover */}
-    //         </div>
-    //         <div className='back'>
-    //           Back
-    //         </div>
-    //     </div>
-        
-    //   );
-    // }
+    
 
 	return(
 		<div className='a'>
@@ -39,11 +26,9 @@ import G12 from '../image/G12.gif';
 			<Container>
 				<Col className='bounce-in-right'>
        
-          {/* <div className='img-right'>
           
-          </div> */}
           <img src={p8} className="img_attribute"/>
-              {/* <iframe src="https://kuochenlee.github.io/background_5/" width="580" height="650"/> */}
+              
         </Col>
 				<Col>
 					
@@ -150,9 +135,7 @@ import G12 from '../image/G12.gif';
 			  	<br/>
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
-      {/* <div className='body'>
-      {flop_card()}
-      </div> */}
+      
       
 		</div>
     </div>

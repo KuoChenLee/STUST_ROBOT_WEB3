@@ -1,40 +1,12 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card,Form,FloatingLabel,Modal} from 'react-bootstrap';
+import {Button,Container,Row,Col,Card,Modal} from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Another_Page_Css/Account.css';
-import {  ethers } from "ethers";
-import Web3Modal, { PROVIDER_WRAPPER_CLASSNAME } from "web3modal";
-import axios from 'axios';
 import React,{useState,useRef,useEffect} from 'react';
-import box from '../image/1.gif';
-import contractaddress from'../contractaddress.json';
 import p12 from '../image/p12.png';
-import p1 from '../image/p2.png';
 import p13 from '../image/p13.png'
-import ABI from'../contractabi.json';
-import {
-	TransitionGroup,
-	CSSTransition
-  } from "react-transition-group";
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link,
-	Navigate,
-	useLocation,
-	useParams
-  } from "react-router-dom";
-import have from './have.js';
-import { getByDisplayValue } from '@testing-library/react';
-import Attribute from './Attribute';
-  const contractAddr=contractaddress.contractaddr;
-  const abi=ABI.abi;
-  const web3Modal = new Web3Modal({
-    network: "Goerli", // testnet
-    providerOptions: {} 
-  });
+import boxes from '../image/0.gif';
+
 
 function Account(props){
     const [tokenID,settokenID]=useState([]);
@@ -43,7 +15,8 @@ function Account(props){
     const [show, setShow] = useState(false);
     const [Attributes,setAttributes]=useState([]);
     const [isClick,setClick]=useState(props.isClick);
-    const [nfts, setNfts] = useState([])
+    const [nfts, setNfts] = useState([]);
+    const [box,setBox]=useState(props.box);
     const [loadingState, setLoadingState] = useState('not-loaded')
     const [address,setAddress]=useState(props.address);
     const [balance,setBalance]=useState(props.balance);
@@ -124,9 +97,7 @@ function Account(props){
         )
     }
 
-    async function openbox(){
-      let flipReveal=await contract.flipReveal();
-    }
+    
 
 
     async function fetchmyNFT(){
@@ -149,10 +120,40 @@ function Account(props){
 		setLoadingState('loaded') 
 		console.log(nfts)
     }
+
+
+
+
     function showMyNFTs(){
+      
+
         if (loadingState === 'loaded' && !nfts.length ) {
 			return (<h1 className="px-20 py-10 text-3xl">No NFTs owned</h1>)
-		  } else {
+		  }
+      else if(box===false){
+        return(
+          <div>
+            <Row>
+            <Col md={4} className="p-3" >
+                                    <div className="card-container" >
+                                    {/* onClick={()=>fetchattrubute(nft.tokenId)} */}
+                                    <Card className='card_box'>
+                                    <Card.Img variant='bottom' src={boxes} className="imgp1"/>
+                                    
+                                    <div className='word3'><p>STUST UNIVERSE</p></div>
+                                    
+                                  </Card>
+                                   
+                                    </div>
+                                    
+                                        
+                                        
+                                        </Col>
+            </Row>
+          </div>
+        )
+      }
+      else if(box===true){
 			return (
 					<Row>
 
@@ -161,21 +162,21 @@ function Account(props){
 						{
 							nfts.map((nft, i) => (
                                 
-                                // nft.owner===address?
+                                
                                 <Col md={4} className="p-3" >
                                     <div className="card-container" >
-                                    {/* onClick={()=>fetchattrubute(nft.tokenId)} */}
+                                    
                                     <Card key={i}  className="cover" >
                                     <Card.Img variant='bottom' src={nft.animation_url} className="imgp1"/>
                                     <div className='word2'><p>{nft.name}</p></div> 
                                                               <div className='word3'><p>STUST UNIVERSE</p></div>
-                                    {/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
+                                    
                                     
                                   </Card>
                                     <Card className='back'>
                                     <Card.Img variant='bottom' src={nft.qrcode} className="imgp2"/>
                                         {display_attribute(nft.tokenId)}
-                                        {/* <Button variant='danger' onClick={()=>sell(nft.tokenId)}>sell</Button> */}
+                                        
                                         {sellmytoken(nft.tokenId)}
                                     </Card>
                                     </div>
@@ -189,25 +190,7 @@ function Account(props){
 							))
 						}
                         
-                        {/* {
-							nfts.map((nft, i) => (
-                                
-                                nft.owner===address?<Col md={4} className="p-3" >
-										<Card key={i} className="card_background">
-											<Card.Img variant='bottom' src={nft.animation_url} className="card_background1"/>
-											<div className='word2'><p>{nft.name}</p></div> 
-											<div className='word3'><p>STUST UNIVERSE</p></div> 
-											<Card.Title className='text8'>{nft.name}</Card.Title>
-											<Card.Body>
-												
-												
-												
-											</Card.Body>
-										</Card></Col>:""
-                                
-								
-							))
-						} */}
+                        
 						
 						
 					</Row>
@@ -262,9 +245,7 @@ function Account(props){
     console.log(token)
     return (
       <>
-        {/* <button className='sellbtn' onClick={handleShow}>
-          <span>Sell</span>
-        </button> */}
+        
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -279,10 +260,8 @@ function Account(props){
             </input>
           </Modal.Body>
           <Modal.Footer>
-            {/* <Button variant="secondary" onClick={handleClose}>
-              Cancel
-            </Button> */}
-            <Button variant="primary" onClick={()=>{sell(input1.current.value,token)} } >
+           
+            <Button variant="success" onClick={()=>{sell(input1.current.value,token)} } >
             Sell Robots
             </Button>
           </Modal.Footer>
@@ -323,6 +302,7 @@ function Account(props){
                 
                 {isClick===false?<h1>Connect Your Wallet</h1>:<Account_display/>}
                 </Row>
+                {/* <Button onClick={()=>blind_box()}>reveals</Button> */}
                 <Row className='div16'>
                    
                     {(loadingState === 'loaded' && !nfts.length)?<h1 className="px-20 py-10 text-3xl">No Robots available!</h1>:showMyNFTs()}
@@ -336,7 +316,7 @@ function Account(props){
     
 
       
-            {/* {window.address==="0x076F59fd9bADE9e98F5ad66b5d1b25324EB24eD5"?<h1>USERS</h1>:<Button variant='success' onClick={()=>openbox()}>Open Boxes</Button>} */}
+           
        
         </div>
     )

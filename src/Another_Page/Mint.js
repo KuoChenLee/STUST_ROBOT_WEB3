@@ -1,49 +1,32 @@
 import '../App';
-import {Button,Container,Row,Col,Navbar,Nav,Carousel,Accordion,Table,iframe,Image,Figure,Card,FormControl,InputLabel,Select,MenuItem} from 'react-bootstrap';
-import Alert from 'react-bootstrap/Alert';
+import {Container,Row,Col} from 'react-bootstrap';
+// import Alert from 'react-bootstrap/Alert';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../Another_Page_Css/Mint.css';
-import {  ethers } from "ethers";
-import Web3Modal from "web3modal";
+// import {  ethers } from "ethers";
+// import Web3Modal from "web3modal";
 import box from '../image/0.gif';
 import React,{useState} from 'react';
-import {
-	TransitionGroup,
-	CSSTransition
-  } from "react-transition-group";
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link,
-	Navigate,
-	useLocation,
-	useParams
-  } from "react-router-dom";
-  import App from '../App.js';
-  import contractaddress from'../contractaddress.json';
-  import ABI from'../contractabi.json';
-  const web3Modal = new Web3Modal({
-    network: "Goerli", // testnet
-    providerOptions: {} 
-  });
-  // const contractAddr=contractAddress.STUST_NFT;
-  // const abi=Stust_NETA_Artifact.abi;
-  const contractAddr=contractaddress.contractaddr;
-  const abi=ABI.abi;
+
+  
+//   const web3Modal = new Web3Modal({
+//     network: "Goerli", // testnet
+//     providerOptions: {} 
+//   });
+  
+  
 
   function Mint(props){
-//   const contractAddr=props.contractAddr;
-//   const abi=props.abi;
+
   const [address,setAddress]=useState(props.address);
-  const [balance,setBalance]=useState('');
+
   const [contract,setContract]=useState(props.contract);
-  const [ens,setEns]=useState('');
-  const [isClick,setClick]=useState(props.isClick);
+
+  
   const [notisClick,setNotClick]=useState(props.notisClick);
-  const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
-  const [nftData,setNFTData]=useState();
+//   const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
+
   //mint 盲盒處理 
   async function mint(){
 	//盲盒的價格
