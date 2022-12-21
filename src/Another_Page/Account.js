@@ -14,16 +14,14 @@ function Account(props){
     const input1 = useRef(1)
     const [show, setShow] = useState(false);
     const [Attributes,setAttributes]=useState([]);
-    const [isClick,setClick]=useState(props.isClick);
+    const [isClick]=useState(props.isClick);
     const [nfts, setNfts] = useState([]);
-    const [box,setBox]=useState(props.box);
+    const [box]=useState(props.box);
     const [loadingState, setLoadingState] = useState('not-loaded')
     const [address]=useState(props.address);
-    const [balance,setBalance]=useState(props.balance);
-    const [contract,setContract]=useState(props.contract);
+    const [balance]=useState(props.balance);
+    const [contract]=useState(props.contract);
     const shortenAddr=address=>address.slice(0,4)+"..."+address.slice(-4);
-    const [nftdata,setNFTData]=useState();
-	  const [URI,setURI]=useState([]);
     useEffect(() => { fetchmyNFT() }, [])
     useEffect(() => { fetchattrubute() }, [])
   //  取得屬性元素
@@ -118,6 +116,37 @@ function Account(props){
 		setLoadingState('loaded') 
 		console.log(nfts)
     }
+    function diplaybox(){
+      const totle=nfts.length;
+      console.log(totle)
+      return(
+        <div>
+         
+            
+              <Row>
+              {
+              nfts.map((totle)=>(
+                <Col key={totle} md={4} className="p-3" >
+                  <div className="card-container" >
+                  <Card className='card_box'>
+                  <Card.Img variant='bottom' src={boxes} className="imgp1"/>
+                  
+                  <div className='word3'><p>STUST UNIVERSE</p></div>
+                  
+                </Card>
+                  
+                  </div>
+                                        
+                                            
+                                            
+                </Col>
+                ))}
+                </Row>
+           
+          
+        </div>
+      )
+    }
     //顯示收取到的NFT 
     function showMyNFTs(){
       
@@ -128,23 +157,7 @@ function Account(props){
       else if(box===false){
         return(
           <div>
-            <Row>
-            <Col md={4} className="p-3" >
-                                    <div className="card-container" >
-                                    {/* onClick={()=>fetchattrubute(nft.tokenId)} */}
-                                    <Card className='card_box'>
-                                    <Card.Img variant='bottom' src={boxes} className="imgp1"/>
-                                    
-                                    <div className='word3'><p>STUST UNIVERSE</p></div>
-                                    
-                                  </Card>
-                                   
-                                    </div>
-                                    
-                                        
-                                        
-                                        </Col>
-            </Row>
+           {diplaybox()}
           </div>
         )
       }
@@ -156,17 +169,12 @@ function Account(props){
 								
 						{
 							nfts.map((nft, i) => (
-                                
-                                // nft.owner===address?
                                 <Col md={4} className="p-3" >
                                     <div className="card-container" >
-                                    {/* onClick={()=>fetchattrubute(nft.tokenId)} */}
                                     <Card key={i}  className="cover" >
                                     <Card.Img variant='bottom' src={nft.animation_url} className="imgp1"/>
                                     <div className='word2'><p>{nft.name}</p></div> 
-                                                              <div className='word3'><p>STUST UNIVERSE</p></div>
-                                    {/* <Card.Title className='text8'>{nft.name}</Card.Title> */}
-                                    
+                                    <div className='word3'><p>STUST UNIVERSE</p></div>
                                   </Card>
                                     <Card className='back'>
                                     <Card.Img variant='bottom' src={nft.qrcode} className="imgp2"/>
@@ -174,12 +182,8 @@ function Account(props){
                                         
                                         {sellmytoken(nft.tokenId)}
                                     </Card>
-                                    </div>
-                                    
-										
-                                        
+                                    </div>  
                                         </Col>
-                                        // :""
                                 
 								
 							))
@@ -204,32 +208,11 @@ function Account(props){
       settokenID(token)
       setSellPrice(input1)
       console.log(token)
-      // 輸入tokenID找tokenURI
-      // let tokenURI=await contract.tokenURI(tokenID)
-      // console.log(tokenURI)
-      //顯示tokenURI的資料放在jsondata裡
-      // let jsondata=await fetch(tokenURI);
-      // console.log(jsondata)
-      //將jsondata用json物件形式解譯
-      // let json = await jsondata.json()
-      //將這包物件設到NFTData裡
-      // setNFTData(json);
-      //查看json裡的name
-      // console.log(json.name)
-      //將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
-      // let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
-      // 將NFT_GIF的animation_url更新到json.animation_url裡
-      // json.animation_url=NFT_GIF
-      // console.log(NFT_GIF)
-
-      // console.log(URI)
-      // console.log(json)
 
       // 將價格用WEI計算
       let price=sellprice*Math.pow(10,18);
       // 觸發createMarketplaceItem來賣NFT
-      
-      let createMarketplaceItem=await contract.createMarketplaceItem(
+      await contract.createMarketplaceItem(
         tokenID,
         price
       )
@@ -308,8 +291,6 @@ function Account(props){
 			  	<br/>
 				<strong className='text4'>STUST UNIVERSE ROBOTS</strong>
 			</div>
-    
- 
         </div>
     )
 }

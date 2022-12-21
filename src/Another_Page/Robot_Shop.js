@@ -1,16 +1,13 @@
 import '../App';
 import {Container,Row,Col,Card} from 'react-bootstrap';
 import '../Another_Page_Css/Robot_Shop.css';
-import axios from 'axios';
 import React,{useState,useEffect} from 'react';
 
   function Robot_Shop(props){
 	const [loadingState, setLoadingState] = useState('not-loaded')
 	const [nfts, setNfts] = useState([])
-	const [contract,setContract]=useState(props.contract);
-	const [isClick,setClick]=useState(props.isClick);
-	const [notisClick,setNotClick]=useState(props.notisClick);
-	const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
+	const [contract]=useState(props.contract);
+	
 	
 	useEffect(() => { display() }, [])
 	// 取得賣出的相關資料
@@ -26,8 +23,7 @@ import React,{useState,useEffect} from 'react';
 			let tokenURI=await contract.tokenURI(Fettoken)
 			console.log(tokenURI)
 			
-			const meta = await axios.get(tokenURI)
-			console.log(meta)
+			
 			const nft={
 				itemId:parseInt(i.itemId),
 				tokenId:parseInt(i.tokenId),

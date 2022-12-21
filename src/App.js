@@ -1,10 +1,9 @@
 import './App.css';
 import {Button,Container,Navbar} from 'react-bootstrap';
-// import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {  ethers } from "ethers";
 import Web3Modal from "web3modal";
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import background from'./image/p11.png';
 import wal from './image/wallet.png';
 import {
@@ -16,20 +15,13 @@ import {
 import Home from './Another_Page/Home.js';
 import Attribute from './Another_Page/Attribute.js';
 import Mint from './Another_Page/Mint.js';
-// import Empowerment from './Another_Page/Empowerment.js';
 import Robot_Shop from './Another_Page/Robot_Shop.js';
 import Account from './Another_Page/Account.js';
-// import contractAddress from './contractaddress.json';
-// import ABIKey from './contractabi.json';
 const web3Modal = new Web3Modal({
   network: "Goerli", // testnet
   providerOptions: {} 
 });
   
-
-
-
-
 function App() {
 	const contractAddr="0x6736FC015D9ea9d7d641cF8292eA994b5fBCd3AF";
 	const abi=[
@@ -1009,38 +1001,22 @@ function App() {
 		}
 	];
 	const [box,setBox]=useState();
-  const [currentAccount,setCurrentAccount]=useState('');
   const [address,setAddress]=useState('');
   const [balance,setBalance]=useState('');
   const [contract,setContract]=useState({});
-  const [ens,setEns]=useState('');
   const [isClick,setClick]=useState(false);
   const [notisClick,setNotClick]=useState(true);
   const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
-  function myFunction() {
-    let elem = document.querySelectorAll(".drop-down");
-    elem.forEach(element=>{
-        element.addEventListener("click", e =>{
-            console.log(e.target.innerHTML);
-        });
-    })
-  }
-  myFunction();
-  // metamask錢包 相關處理
-	const checkIfWalletIsConnected = async () => {
-		if (!window.ethereum) return alert('Please install MetaMask');
-
-		const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-
-		if (accounts.length) {
-		setCurrentAccount(accounts[0]);
-		} else {
-		console.log('No account found');
-		}
-	};
-	useEffect(() => {
-		checkIfWalletIsConnected();
-	  }, []);
+//   function myFunction() {
+//     let elem = document.querySelectorAll(".drop-down");
+//     elem.forEach(element=>{
+//         element.addEventListener("click", e =>{
+//             console.log(e.target.innerHTML);
+//         });
+//     })
+//   }
+//   myFunction();
+//   metamask錢包 相關處理
     async function init(){
 	// 錢包連結
       const instance = await web3Modal.connect();
@@ -1054,7 +1030,6 @@ function App() {
       setContract(_contract);
       window.contract=_contract;
 	//   取得並設定地址
-      setEns(await provider.lookupAddress(addr));
       console.log(addr);
 	//   設定地址
       setAddress(addr);
@@ -1084,7 +1059,6 @@ function App() {
 					<Link className='text1' to="/Home" ><button className='button1'>Home</button></Link>
 					<Link className='text1' to="/Attribute"><button className='button1'>Attribute</button></Link>
 					<Link className='text1' to="/Mint"><button className='button1'>Mint</button></Link>
-					{/* <Link className='text1' to='/Empowerment'><button className='button1'>Empowerment</button></Link> */}
 					<Link className='text1' to="/Robot_Shop"><button className='button1'>Robot Shop</button></Link>
 				
 					<div>
@@ -1109,10 +1083,9 @@ function App() {
 					{/* 路徑處理 */}
 					<Route exact path="*"  element={<Home/>}/>
 					<Route path="/Attribute" element={<Attribute/>} />
-					<Route path="/Mint" element={<Mint contract={contract} address={address} notisClick={notisClick} isClick={isClick} contractAddr={contractAddr} abi={abi}/>} />
-					{/* <Route path="/Empowerment" element={<Empowerment/>} /> */}
-					<Route path="/Robot_Shop" element={<Robot_Shop contract={contract} address={address} notisClick={notisClick} isClick={isClick}/>} />
-					<Route path="/Account" element={<Account address={address} contract={contract}  contractAddr={contractAddr} abi={abi} balance={balance} isClick={isClick} box={box}/>}/>
+					<Route path="/Mint" element={<Mint contract={contract} address={address} notisClick={notisClick} />} />
+					<Route path="/Robot_Shop" element={<Robot_Shop contract={contract} />} />
+					<Route path="/Account" element={<Account address={address} contract={contract}  balance={balance} isClick={isClick} box={box}/>}/>
 				</Routes>
 		</Router>
       </div>

@@ -1,38 +1,26 @@
 import '../App';
 import {Container,Row,Col} from 'react-bootstrap';
-// import Alert from 'react-bootstrap/Alert';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import '../Another_Page_Css/Mint.css';
-// import {  ethers } from "ethers";
-// import Web3Modal from "web3modal";
 import box from '../image/0.gif';
 import React,{useState} from 'react';
-
-  
-//   const web3Modal = new Web3Modal({
-//     network: "Goerli", // testnet
-//     providerOptions: {} 
-//   });
   
   
 
   function Mint(props){
 
-  const [address,setAddress]=useState(props.address);
+  const [address]=useState(props.address);
 
-  const [contract,setContract]=useState(props.contract);
+  const [contract]=useState(props.contract);
 
   
-  const [notisClick,setNotClick]=useState(props.notisClick);
-//   const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
+  const [notisClick]=useState(props.notisClick);
 
   //mint 盲盒處理 
   async function mint(){
 	//盲盒的價格
     const mintPrice = await contract.mintPrice();
 	//觸發合約mint功能
-    let tx = await contract.mintSNMeta(
+    await contract.mintSNMeta(
       1
       ,{value:mintPrice.toString()}
       );
@@ -68,7 +56,7 @@ import React,{useState} from 'react';
 						
 					{/* 假如未觸發connect wallet button ，button 不能按 */}
 						
-						<button className={address?'mintbutton':'mintbutton1'} onClick={()=>mint()}>
+						<button disabled={notisClick}  className={address?'mintbutton':'mintbutton1'} onClick={()=>mint()}>
 							<span>
 							Mint Blind Box
 							</span>
