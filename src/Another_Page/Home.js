@@ -15,7 +15,7 @@ function Home(){
     
     return(
       <div className="App">
-        {/* 動態圖展示 */}
+        {/* 首頁圖 */}
         <div className='Home_background'>
           <br/>
           <br/>

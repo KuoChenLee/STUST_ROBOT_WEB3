@@ -18,7 +18,7 @@ function Account(props){
     const [nfts, setNfts] = useState([]);
     const [box,setBox]=useState(props.box);
     const [loadingState, setLoadingState] = useState('not-loaded')
-    const [address,setAddress]=useState(props.address);
+    const [address]=useState(props.address);
     const [balance,setBalance]=useState(props.balance);
     const [contract,setContract]=useState(props.contract);
     const shortenAddr=address=>address.slice(0,4)+"..."+address.slice(-4);
@@ -26,7 +26,7 @@ function Account(props){
 	  const [URI,setURI]=useState([]);
     useEffect(() => { fetchmyNFT() }, [])
     useEffect(() => { fetchattrubute() }, [])
-   
+  //  取得屬性元素
     async function fetchattrubute(token){
         let tokenURI=await contract.tokenURI(token)
         let jsondata=await fetch(tokenURI);
@@ -47,6 +47,7 @@ function Account(props){
         setAttributes(Attributes.filter(Attribute => Attribute !== null))
         console.log(Attributes)
     }
+    // 顯示屬性
     function display_attribute(tokenId){
         const handleClose = () => setShow(false);
 		const handleShow = () => setShow(true);
@@ -96,10 +97,7 @@ function Account(props){
 		  </>
         )
     }
-
-    
-
-
+    // 取得收取到的NFT token
     async function fetchmyNFT(){
         let fetchMyNFTs=await contract.fetchMyNFTs();
         console.log(fetchMyNFTs)
@@ -120,10 +118,7 @@ function Account(props){
 		setLoadingState('loaded') 
 		console.log(nfts)
     }
-
-
-
-
+    //顯示收取到的NFT 
     function showMyNFTs(){
       
 
@@ -200,6 +195,7 @@ function Account(props){
 				
 					}
     }
+    // 賣出的功能
    async function sell(input1,token){
     
       console.log(input1);
@@ -209,27 +205,27 @@ function Account(props){
       setSellPrice(input1)
       console.log(token)
       // 輸入tokenID找tokenURI
-      let tokenURI=await contract.tokenURI(tokenID)
+      // let tokenURI=await contract.tokenURI(tokenID)
       // console.log(tokenURI)
       //顯示tokenURI的資料放在jsondata裡
-      let jsondata=await fetch(tokenURI);
+      // let jsondata=await fetch(tokenURI);
       // console.log(jsondata)
       //將jsondata用json物件形式解譯
-      let json = await jsondata.json()
+      // let json = await jsondata.json()
       //將這包物件設到NFTData裡
-      setNFTData(json);
+      // setNFTData(json);
       //查看json裡的name
-      console.log(json.name)
+      // console.log(json.name)
       //將json裡的animation_url前面的"ipfs://"轉換成"https://gateway.pinata.cloud/ipfs/"
-      let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
+      // let NFT_GIF=json.animation_url.replace("ipfs://","https://gateway.pinata.cloud/ipfs/");
       // 將NFT_GIF的animation_url更新到json.animation_url裡
-      json.animation_url=NFT_GIF
-      console.log(NFT_GIF)
+      // json.animation_url=NFT_GIF
+      // console.log(NFT_GIF)
 
-      console.log(URI)
-      console.log(json)
+      // console.log(URI)
+      // console.log(json)
+
       // 將價格用WEI計算
-      
       let price=sellprice*Math.pow(10,18);
       // 觸發createMarketplaceItem來賣NFT
       
@@ -238,6 +234,7 @@ function Account(props){
         price
       )
    }
+  //  賣出功能德選單
    function sellmytoken(token){
     // const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

@@ -1042,22 +1042,30 @@ function App() {
 		checkIfWalletIsConnected();
 	  }, []);
     async function init(){
+	// 錢包連結
       const instance = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(instance);
+	//   取得簽署
       const signer = provider.getSigner();
+	//   取得簽署的地址
       const addr=await signer.getAddress();
+	//   取得合約
       const _contract=new ethers.Contract(contractAddr,abi,signer);
       setContract(_contract);
       window.contract=_contract;
+	//   取得並設定地址
       setEns(await provider.lookupAddress(addr));
       console.log(addr);
+	//   設定地址
       setAddress(addr);
+	//   取得錢包餘額
       const bal=await provider.getBalance(addr);
       setBalance(ethers.utils.formatEther( bal )); 
       setClick((isClick) => !isClick);
       setNotClick((notisClick)=>!notisClick);
       console.log(notisClick);
     }
+	// 盲盒狀態查詢
 	async function reveals(){
         let _revealed=await contract._revealed();
         console.log(_revealed)
@@ -1085,8 +1093,8 @@ function App() {
 						</span>}
 						<div  onClick={()=>{init()}} >
 						{
-							
-							address?<Button variant='success' disabled={isClick}>{ens||shortenAddr(address)}</Button>:<img src={wal} alt="background" className="wallet"/>
+							// 三元判斷式
+							address?<Button variant='success' disabled={isClick}>{shortenAddr(address)}</Button>:<img src={wal} alt="background" className="wallet"/>
 						}
 						</div>
 						

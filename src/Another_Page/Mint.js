@@ -36,21 +36,7 @@ import React,{useState} from 'react';
       1
       ,{value:mintPrice.toString()}
       );
-	  //看狀態
-    let response=await tx.wait();
-    console.log(response);
-	// 設定盲盒的IPFS json檔網址
-	// let setNotRevealedURI=await contract.setNotRevealedURI(
-	// 			"https://gateway.pinata.cloud/ipfs/QmVceFMQrQjXcG7ifBYPpk3W21DnNXq8BUBEfsGXq8WVSX"
-	// );
-	// let tokenURI=await contract.tokenURI(2)
-	// console.log(tokenURI);
-	// let ownerof=await contract.ownerof(2)
-	// console.log(ownerof);
-	//做一個隨機盒子的運算
-	// let setBaseURI=await contract.setBaseURI(
-    //     "https://gateway.pinata.cloud/ipfs/QmPdFoaeFyeA7NjgYRwofowHtG9nwK8MjdnuzdJkoBYf6x/"
-    //     )
+	  
    
   }
   //查看網頁的重新更新
@@ -76,18 +62,13 @@ import React,{useState} from 'react';
 					<Col className='roll-in-top'>
 						<img src={box} width="600" height="650" className='blindBox'/>
 					</Col>
-						{/* <select className="list1" id="list">
-						<option class="drop-down">0</option>
-						<option class="drop-down" selected="selected">1</option>
-						<option class="drop-down">2</option>
-						</select> */}
+						
 					<Col>
 					<br/>
 						
 					{/* 假如未觸發connect wallet button ，button 不能按 */}
-						{/* <Button disabled={notisClick} onClick={()=>mint()} variant={address?"danger":"secondary"} >Mint Blind Box</Button> */}
-                        {/* disabled={notisClick} */}
-						<button className={address?'mintbutton':'mintbutton1'} disabled={notisClick} onClick={()=>mint()}>
+						
+						<button className={address?'mintbutton':'mintbutton1'} onClick={()=>mint()}>
 							<span>
 							Mint Blind Box
 							</span>
@@ -95,20 +76,11 @@ import React,{useState} from 'react';
 						<br/>
 						<br/>
 					</Col>
-					{/* <Col>
-						<h1 className='text2'>Open your blind box.🔑</h1>
-						<h6 className='text2'>
-						You can open the blind box.
-						</h6>
-					</Col> */}
+					
 					<Col>
-					{/* 假如未觸發connect wallet button ，button 不能按 */}
-						{/* <Button disabled={notisClick} onClick={()=>SeeNFT()} variant={address?"dark":"secondary"} >Open Blind Box</Button> */}
-                        {/* disabled={notisClick} */}
+					
 					</Col>
-					{/* <Col>
-						<h6 className='text2'>If you want to see your NFT ,Click <a href='https://testnets.opensea.io/zh-TW'>OpenSea</a></h6>
-					</Col> */}
+				
 					
 				</Container>
 				</div>

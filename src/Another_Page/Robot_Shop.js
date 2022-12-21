@@ -13,7 +13,7 @@ import React,{useState,useEffect} from 'react';
 	const shortenAddr=addr=>addr.slice(0,4)+"..."+addr.slice(-4);//取前四後四的Addr
 	
 	useEffect(() => { display() }, [])
-	
+	// 取得賣出的相關資料
 	async function display(){
 		
 		const fetchMarketplaceItems=await contract.fetchMarketplaceItems()
@@ -45,6 +45,7 @@ import React,{useState,useEffect} from 'react';
 		console.log(nfts)
 		
 	}
+	// 顯示賣出的NFT
 	function showNFT(){
 		if (loadingState === 'loaded' && !nfts.length) {
 			return (<h1 className="px-20 py-10 text-3xl">No pets available!</h1>)
@@ -82,7 +83,7 @@ import React,{useState,useEffect} from 'react';
 	}
 		
 		
-	// 買NFT的function
+	// 買NFT的功能
 	async function BuyNFT(nft){
 		console.log(nft)
 		let price=nft.price*Math.pow(10,18);
